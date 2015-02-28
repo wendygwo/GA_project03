@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+  	# raise params.inspect
     # Get the owner email (unique to each user) the user typed in
     # Find the record in the database that corresponds to this email
     c = Owner.where(email: params[:owner][:email]).first 
@@ -19,9 +20,7 @@ class SessionsController < ApplicationController
       #redirect to owner's show view
   		redirect_to owner_path(c)
     else
-      # redirect to new login page
-      # TO DO: should probably put error message if they're not able to log in
-      # redirect_to new_session_path
+      # redirect to login page
       redirect_to new_session_path(:error_message => 'Incorrect password or username')
   	end
   end

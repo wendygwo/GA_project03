@@ -28,13 +28,16 @@ class OwnersController < ApplicationController
 
     respond_to do |format|
       if @owner.save
-        format.html { redirect_to @owner, notice: 'Owner was successfully created.' }
+        # format.html { redirect_to @owner, notice: 'Owner was successfully created.' }
+        format.html { redirect_to new_session_path, notice: 'Owner was successfully created.' }
         format.json { render :show, status: :created, location: @owner }
       else
         format.html { render :new }
         format.json { render json: @owner.errors, status: :unprocessable_entity }
       end
     end
+
+
   end
 
   # PATCH/PUT /owners/1

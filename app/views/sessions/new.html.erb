@@ -1,2 +1,18 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<!-- Show successful new user creation message -->
+<p id="notice"><%= notice %></p>
+
+<h1>Log in!</h1>
+
+<!-- Displays error messages -->
+<%if params[:error_message] != nil %>
+	<p class="text-danger"><%= params[:error_message] %></p>
+<% end %> 
+
+<%= form_for @owner, :url => { :controller => "sessions", :action => "create" } do |f| %> <!-- See the comment under the f.submit line for details. the url tells it to go to the sessions path, create method instead-->
+
+	<p><%= f.text_field :email %></p>
+	<p><%= f.password_field :password %></p>
+	<p><%=f.submit 'Log yourself in', :class =>  'btn btn-primary center-block' %> </p><!-- This will post back to the users controller by default because it's a user. We need to override this behavior -->
+<% end %>
+
+<%= link_to 'New user? Register here', new_owner_path %>
