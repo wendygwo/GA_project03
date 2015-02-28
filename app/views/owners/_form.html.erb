@@ -1,0 +1,58 @@
+<%= form_for(@owner) do |f| %>
+  <% if @owner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@owner.errors.count, "error") %> prohibited this owner from being saved:</h2>
+
+      <ul>
+      <% @owner.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :address_street %><br>
+    <%= f.text_field :address_street %>
+  </div>
+  <div class="field">
+    <%= f.label :address_city %><br>
+    <%= f.text_field :address_city %>
+  </div>
+  <div class="field">
+    <%= f.label :address_state %><br>
+    <%= f.text_field :address_state %>
+  </div>
+  <div class="field">
+    <%= f.label :address_zip %><br>
+    <%= f.number_field :address_zip %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <!-- Added for password -->
+  <div class="field">
+    Password: 
+    <%=f.password_field :password %>
+  </div>
+  <div class="field">
+    Password confirmation: 
+    <%=f.password_field :password_confirmation, label: "Confirm Password"%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,69 @@
+<%= form_for(@business) do |f| %>
+  <% if @business.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@business.errors.count, "error") %> prohibited this business from being saved:</h2>
+
+      <ul>
+      <% @business.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :address_street %><br>
+    <%= f.text_field :address_street %>
+  </div>
+  <div class="field">
+    <%= f.label :address_city %><br>
+    <%= f.text_field :address_city %>
+  </div>
+  <div class="field">
+    <%= f.label :address_state %><br>
+    <%= f.text_field :address_state %>
+  </div>
+  <div class="field">
+    <%= f.label :address_zip %><br>
+    <%= f.number_field :address_zip %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :website_url %><br>
+    <%= f.text_field :website_url %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook_link %><br>
+    <%= f.text_field :facebook_link %>
+  </div>
+  <div class="field">
+    <%= f.label :twitter_link %><br>
+    <%= f.text_field :twitter_link %>
+  </div>
+  <div class="field">
+    <%= f.label :google_plus_link %><br>
+    <%= f.text_field :google_plus_link %>
+  </div>
+  <div class="field">
+    <%= f.label :pinterest_link %><br>
+    <%= f.text_field :pinterest_link %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
