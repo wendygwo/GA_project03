@@ -1,5 +1,7 @@
 class Business < ActiveRecord::Base
-	has_many :business_owners
+	# The dependent destroy means any records associated with this business on the business_owners table will be destroyed if a business is destroyed
+	# The owner record won't be destroyed though
+	has_many :business_owners, dependent: :destroy
   has_many :owners, through: :business_owners
 
   has_many :products

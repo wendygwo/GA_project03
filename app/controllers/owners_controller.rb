@@ -10,6 +10,15 @@ class OwnersController < ApplicationController
   # GET /owners/1
   # GET /owners/1.json
   def show
+    # Will find all the shops owned by the currently logged in owner
+    if current_owner != nil
+      @owner = Owner.find(params[:id])
+      #Find all the businesses tied to the current owner
+      @businesses = @owner.businesses 
+    else
+      #Redirects user to new session path if no owner is logged in
+      redirect_to new_session_path 
+    end
   end
 
   # GET /owners/new

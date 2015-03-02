@@ -10,6 +10,8 @@ class BusinessesController < ApplicationController
   # GET /businesses/1
   # GET /businesses/1.json
   def show
+    # Get the products tied to this business
+    @products = Product.where(business_id: @business.id)
   end
 
   # GET /businesses/new
@@ -25,9 +27,13 @@ class BusinessesController < ApplicationController
   # POST /businesses.json
   def create
     @business = Business.new(business_params)
-
+    # Find the owner that's adding this business so we can create the relationship to the owner if this business saves
+    owner= Owner.where(id: current_owner.id).first
+    
     respond_to do |format|
       if @business.save
+        # Create a record in the associative table to join the owner and business that was just added
+        @business.business_owners.create(owner: owner)
         format.html { redirect_to @business, notice: 'Business was successfully created.' }
         format.json { render :show, status: :created, location: @business }
       else
@@ -69,6 +75,6 @@ class BusinessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_params
-      params.require(:business).permit(:name, :email, :address_street, :address_city, :address_state, :address_zip, :phone_number, :website_url, :description, :facebook_link, :twitter_link, :google_plus_link, :pinterest_link)
+      params.require(:business).permit(:name, :email, :address_street, :address_city, :address_state, :address_zip, :phone_number, :website_url, :description, :facebook_link, :twitter_link, :google_plus_link, :pinterest_link, :biz_image)
     end
 end
