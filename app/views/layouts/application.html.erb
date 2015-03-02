@@ -11,17 +11,21 @@
 <!-- Only show log out link if someone is logged in -->
 <% if current_owner != nil %>
 	<%= link_to 'Log out', sessions_path, method: :delete %>
+	<%= link_to 'Back to my dashboard', owner_path(current_owner) %>
 <% end %>
 
 <%= yield %>
 
 <!-- This is for troubleshooting only. Delete this later -->
-<br>
-<hr>
-<h3>Parameters</h3>
-<%= params.inspect %>
-<p>Session ID: <p>
-<%=session['owner_id']%>
+<font color='red'>
+	<br>
+	<hr>
+	<h3>Parameters (for troubleshooting. delete later!)</h3>
+	<%= params.inspect %>
+	<p>Session ID: <p>
+	<%=session['owner_id']%>
+</font>
+
 
 </body>
 </html>

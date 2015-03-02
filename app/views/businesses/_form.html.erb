@@ -16,6 +16,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :biz_image %><br>
+    <%= f.file_field :biz_image %>
+  </div> 
+  <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
@@ -41,7 +45,7 @@
   </div>
   <div class="field">
     <%= f.label :website_url %><br>
-    <%= f.text_field :website_url %>
+    www.<%= f.text_field :website_url %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
@@ -49,20 +53,21 @@
   </div>
   <div class="field">
     <%= f.label :facebook_link %><br>
-    <%= f.text_field :facebook_link %>
+    www.facebook.com/<%= f.text_field :facebook_link %>
   </div>
   <div class="field">
     <%= f.label :twitter_link %><br>
-    <%= f.text_field :twitter_link %>
+    www.twitter.com/<%= f.text_field :twitter_link %>
   </div>
   <div class="field">
     <%= f.label :google_plus_link %><br>
-    <%= f.text_field :google_plus_link %>
+    plus.google.com/<%= f.text_field :google_plus_link %>
   </div>
   <div class="field">
     <%= f.label :pinterest_link %><br>
-    <%= f.text_field :pinterest_link %>
-  </div>
+    www.pinterest.com/<%= f.text_field :pinterest_link %>
+  </div> 
+
   <div class="actions">
     <%= f.submit %>
   </div>

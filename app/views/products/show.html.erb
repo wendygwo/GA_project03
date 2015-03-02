@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<h1>This is the product show page</h1>
+
+<p>
+  <%= image_tag @product.product_image.url("medium") %>
+</p>
+
 <p>
   <strong>Name:</strong>
   <%= @product.name %>
@@ -25,10 +31,10 @@
   <%= @product.category %>
 </p>
 
-<p>
+<!-- <p>
   <strong>Business:</strong>
-  <%= @product.business %>
-</p>
+  <%#= @product.business %>
+</p> -->
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

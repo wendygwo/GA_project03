@@ -1,69 +1,85 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Welcome to <%= @business.name %> page!</h1>
+
+<%= link_to 'Edit business details', edit_business_path(@business) %>
+
+<% if @business.biz_image_file_name != nil %>
+  <%= image_tag @business.biz_image.url(:medium) %>
+<% end %>
+
+<!-- The link to might need to be changed if the images get broken on heroku -->
+<div id='socialMediaIcons'>
+  <% if @business.facebook_link != ''%>
+    <%= link_to(image_tag('facebook.png'),'http://www.facebook.com/'+@business.facebook_link) %>
+  <% end %>
+  <% if @business.twitter_link != ''%>
+    <%= link_to(image_tag('twitter.png'),'http://www.twitter.com/'+@business.twitter_link) %>
+  <% end %>
+  <% if @business.google_plus_link != ''%>
+    <%= link_to(image_tag('googleplus.png'),'http://plus.google.com/'+@business.google_plus_link) %>
+  <% end %>
+  <% if @business.pinterest_link !='' %>
+    <%= link_to(image_tag('pinterest.png'),'http://www.pinterest.com/'+@business.pinterest_link) %>
+  <% end %>
+</div>
+
 <p>
-  <strong>Name:</strong>
-  <%= @business.name %>
+  <!-- Sends e-mail with a subject line containing your business name -->
+  <strong><%= mail_to @business.email, 'E-mail us!', subject: "An e-mail from a customer about "+@business.name %></strong>
 </p>
 
 <p>
-  <strong>Email:</strong>
-  <%= @business.email %>
-</p>
-
-<p>
-  <strong>Address street:</strong>
-  <%= @business.address_street %>
-</p>
-
-<p>
-  <strong>Address city:</strong>
-  <%= @business.address_city %>
-</p>
-
-<p>
-  <strong>Address state:</strong>
-  <%= @business.address_state %>
-</p>
-
-<p>
-  <strong>Address zip:</strong>
+  <strong>We're located at:</strong><br />
+  <%= @business.address_street %><br />
+  <%= @business.address_city %>, <%= @business.address_state %> 
   <%= @business.address_zip %>
 </p>
 
 <p>
-  <strong>Phone number:</strong>
+  <strong>Phone number:</strong><br />
   <%= @business.phone_number %>
 </p>
 
 <p>
-  <strong>Website url:</strong>
-  <%= @business.website_url %>
+  <!-- Create a link to the company's website -->
+  <%= link_to "Our company website", 'http://www.'+@business.website_url %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Description:</strong><br />
   <%= @business.description %>
 </p>
 
-<p>
-  <strong>Facebook link:</strong>
-  <%= @business.facebook_link %>
-</p>
+<h2>My products</h2>
+<% @products.each do |product| %>
+  <table class='product'>
+    <tr>
+      <td colspan="2"><%= image_tag product.product_image.url(:medium) %></td>
+    </tr>
+    <tr>
+      <th>Product name:</th>
+      <td><%= product.name %></td>
+    </tr>
+    <tr>
+      <th>Quantity</th>
+      <td><%= product.quantity%></td>
+    </tr>
+    <tr>
+      <th>Price</th>
+      <td>$<%= product.price%></td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td><%= product.description %></td>
+    </tr>
+    <tr>
+      <th>Category</th>
+      <td><%= product.category%></td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= link_to 'Edit', edit_product_path(product) %></td>
+    </tr>
+  </table>
+<% end %>
 
-<p>
-  <strong>Twitter link:</strong>
-  <%= @business.twitter_link %>
-</p>
-
-<p>
-  <strong>Google plus link:</strong>
-  <%= @business.google_plus_link %>
-</p>
-
-<p>
-  <strong>Pinterest link:</strong>
-  <%= @business.pinterest_link %>
-</p>
-
-<%= link_to 'Edit', edit_business_path(@business) %> |
-<%= link_to 'Back', businesses_path %>

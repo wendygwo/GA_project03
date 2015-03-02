@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+table.product{
+	border-collapse:collapse;
+	border: 2px gray solid;
+}
+.socialMediaIconSize{
+	width: 70px;
+	height: 70px;
+}
+.facebookIcon{
+	background: asset-url('facebook.png');
+	@extend .socialMediaIconSize;
+}
+.pinterestIcon{
+	background: asset-url('pinterest.png');
+	@extend .socialMediaIconSize;
+}
+.twitterIcon{
+	background: asset-url('twitter.png');
+	@extend .socialMediaIconSize;
+}
+.googleplusIcon{
+	background: asset-url('googleplus.png');
+	@extend .socialMediaIconSize;
+}

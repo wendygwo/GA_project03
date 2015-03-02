@@ -24,6 +24,10 @@
     <%= f.text_field :price %>
   </div>
   <div class="field">
+    <%= f.label :product_image %><br>
+    <%= f.file_field :product_image %>
+  </div> 
+  <div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>
@@ -31,10 +35,14 @@
     <%= f.label :category %><br>
     <%= f.text_field :category %>
   </div>
-  <div class="field">
-    <%= f.label :business_id %><br>
-    <%= f.text_field :business_id %>
-  </div>
+ <div class="field">
+    <%#= f.label :business_id %><br>
+    <%# f.text_field :business_id, value:params[:business_id] %>
+  </div> 
+
+  <!-- Using a hidden field to pass the owner_id! -->
+  <%= f.hidden_field :business_id, value:params[:business_id] %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
