@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'maps/index'
+
+  get 'maps/new'
+
+  get 'maps/show'
+
+  get 'maps/edit'
+
   # get 'sessions/new'
 
   # get 'sessions/create'
