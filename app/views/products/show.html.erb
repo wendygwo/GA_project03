@@ -1,14 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>This is the product show page</h1>
+<h1><%=link_to @product.business.name, business_path(@product.business) %></h1>
+<h2><%= @product.name %></h2>
 
 <p>
   <%= image_tag @product.product_image.url("medium") %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
 </p>
 
 <p>
@@ -28,7 +24,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @product.category %>
+  <%= @product.category.category_name %>
 </p>
 
 <!-- <p>

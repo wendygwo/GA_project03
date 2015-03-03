@@ -55,7 +55,11 @@
 <% @products.each do |product| %>
   <table class='product'>
     <tr>
-      <td colspan="2"><%= image_tag product.product_image.url(:medium) %></td>
+      <td colspan="2">
+        <%= link_to product_path(product) do %> 
+          <%= image_tag product.product_image.url(:medium) %>
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th>Product name:</th>
@@ -75,7 +79,7 @@
     </tr>
     <tr>
       <th>Category</th>
-      <td><%= product.category%></td>
+      <td><%= product.category.category_name%></td>
     </tr>
     <tr>
       <td colspan="2"><%= link_to 'Edit', edit_product_path(product) %></td>
