@@ -8,7 +8,7 @@
 	<p class="text-danger"><%= params[:error_message] %></p>
 <% end %> 
 
-<%= form_for @owner, :url => { :controller => "sessions", :action => "create" } do |f| %> <!-- See the comment under the f.submit line for details. the url tells it to go to the sessions path, create method instead-->
+<%= bootstrap_form_for @owner, :url => { :controller => "sessions", :action => "create" } do |f| %> <!-- See the comment under the f.submit line for details. the url tells it to go to the sessions path, create method instead-->
 	<p>Email</p>
 	<p><%= f.text_field :email %></p>
 	<p>Password</p>

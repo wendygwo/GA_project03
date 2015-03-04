@@ -11,16 +11,16 @@
 <!-- The link to might need to be changed if the images get broken on heroku -->
 <div id='socialMediaIcons'>
   <% if @business.facebook_link != ''%>
-    <%= link_to(image_tag('facebook.png'),'http://www.facebook.com/'+@business.facebook_link) %>
+    <%= link_to(image_tag('facebook.png'),@business.facebook_link, target: "_blank") %>
   <% end %>
   <% if @business.twitter_link != ''%>
-    <%= link_to(image_tag('twitter.png'),'http://www.twitter.com/'+@business.twitter_link) %>
+    <%= link_to(image_tag('twitter.png'), @business.twitter_link, target: "_blank") %>
   <% end %>
   <% if @business.google_plus_link != ''%>
-    <%= link_to(image_tag('googleplus.png'),'http://plus.google.com/'+@business.google_plus_link) %>
+    <%= link_to(image_tag('googleplus.png'), @business.google_plus_link, target: "_blank") %>
   <% end %>
   <% if @business.pinterest_link !='' %>
-    <%= link_to(image_tag('pinterest.png'),'http://www.pinterest.com/'+@business.pinterest_link) %>
+    <%= link_to(image_tag('pinterest.png'), @business.pinterest_link, target:  "_blank") %>
   <% end %>
 </div>
 
@@ -43,7 +43,7 @@
 
 <p>
   <!-- Create a link to the company's website -->
-  <%= link_to "Our company website", 'http://www.'+@business.website_url %>
+  <%= link_to "Our company website", @business.website_url, target:  "_blank" %>
 </p>
 
 <p>
