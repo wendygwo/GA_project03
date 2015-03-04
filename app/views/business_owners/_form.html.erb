@@ -1,4 +1,4 @@
-<%= form_for(@business_owner) do |f| %>
+<%= bootstrap_form_for(@business_owner) do |f| %>
   <% if @business_owner.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@business_owner.errors.count, "error") %> prohibited this business_owner from being saved:</h2>
