@@ -1,1 +1,1 @@
-json.extract! @business, :id, :name, :email, :address_street, :address_city, :address_state, :address_zip, :phone_number, :website_url, :description, :facebook_link, :twitter_link, :google_plus_link, :pinterest_link, :created_at, :updated_at
+json.extract! @business, :id, :name, :email, :address_street, :address_city, :address_state, :address_zip, :phone_number, :website_url, :description, :facebook_link, :twitter_link, :google_plus_link, :latitude, :longitude,:pinterest_link, :created_at, :updated_at
