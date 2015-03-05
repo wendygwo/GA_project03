@@ -1,5 +1,10 @@
+# require 'json'
+# require 'httparty'
 class MapsController < ApplicationController
+
   def index
+  	# @response = HTTParty.get("http://localhost:3000/businesses.json")
+  	@businesses = Business.all
   end
 
   def new
