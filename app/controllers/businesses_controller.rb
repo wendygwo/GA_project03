@@ -60,6 +60,7 @@ class BusinessesController < ApplicationController
   # DELETE /businesses/1
   # DELETE /businesses/1.json
   def destroy
+    @business.products.destroy_all
     @business.destroy
     respond_to do |format|
       format.html { redirect_to businesses_url, notice: 'Business was successfully destroyed.' }
