@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   resources :categories
 
-  get 'maps/index'
+  resources :maps, only: [:index, :show]
+  # get 'maps/index'
 
-  get 'maps/new'
+  # get 'maps/new'
 
-  get 'maps/show'
+  # get 'maps/show'
 
-  get 'maps/edit'
+  # get 'maps/edit'
 
   # get 'sessions/new'
 
