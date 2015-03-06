@@ -14,6 +14,28 @@ class Business < ActiveRecord::Base
   validates_attachment_content_type :biz_image, :content_type => /\Aimage\/.*\Z/
   validates_with AttachmentSizeValidator, :attributes => :biz_image, :less_than => 1.megabytes
 
+  ############################################################
+  ############### Start form field validations ###############
+  ############################################################
+
+  # Validates presence of first and last name, and all address fields
+  validates_presence_of :name, :email, :address_street, :address_city, :address_state, :address_zip, :phone_number, :description
+
+  # Validates that zip code is an integer, and that it is only 5 digits exactly long
+  validates :address_zip, numericality: { only_integer: true }, format: {with: /\A\d{5}\z/ }
+
+  # Validates length of e-mail, first name, and last name
+  validates_length_of :email, :name, maximum: 50
+  validates_length_of :description, maximum: 500
+
+ # Validates e-mail for uniqueness and presence
+  validates :email, uniqueness: true, presence: true, format:{ with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i , multiline: true }
+
+  ##########################################################
+  ############### End form field validations ###############
+  ##########################################################
+
+
   def full_address
   	"#{address_street}, #{address_city}, #{address_state} #{address_zip}"
   end

@@ -5,6 +5,10 @@ RSpec.describe Owner, type: :model do
   it { should validate_uniqueness_of(:email)}
   it { should validate_presence_of(:email) }
 
+  #Checks format of e-mail field
+  it { should allow_value('john@john.com').for(:email)}
+  it { should_not allow_value('john@jo@hn.com').for(:email)}
+
   #Checks presence of first name and last name
   it { should validate_presence_of(:first_name) }
   it { should validate_presence_of(:last_name) }
@@ -21,4 +25,7 @@ RSpec.describe Owner, type: :model do
   it { should allow_value(90249).for(:address_zip)}
   it { should_not allow_value(9024).for(:address_zip)}
 
+  it { should validate_length_of(:email).is_at_most(50) }
+  it { should validate_length_of(:first_name).is_at_most(50) }
+  it { should validate_length_of(:last_name).is_at_most(50) }
 end
