@@ -28,7 +28,6 @@ RSpec.describe OwnersController, type: :controller do
       get(:show, {id: @owner1.id}, {"owner_id" => @owner1.id})
     end
 
-    ####### This is erroring for some reason
     it "should render the correct template" do
       expect(response).to render_template :show
     end
