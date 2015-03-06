@@ -1,5 +1,5 @@
 <!-- Show successful new user creation message -->
-
+<div class="container-fluid">
 <p id="notice"><%= notice %></p>
 
 <h1>Log in!</h1>
@@ -10,11 +10,12 @@
 <% end %> 
 
 <%= bootstrap_form_for @owner, :url => { :controller => "sessions", :action => "create" } do |f| %> <!-- See the comment under the f.submit line for details. the url tells it to go to the sessions path, create method instead-->
-	<p>Email</p>
+	
 	<p><%= f.text_field :email %></p>
-	<p>Password</p>
 	<p><%= f.password_field :password %></p>
 	<p><%=f.submit 'Log yourself in', :class =>  'btn btn-primary center-block' %> </p><!-- This will post back to the users controller by default because it's a user. We need to override this behavior -->
 <% end %>
 
 <%= link_to 'New user? Register here', new_owner_path %>
+
+</div>
