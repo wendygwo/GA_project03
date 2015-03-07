@@ -1,0 +1,173 @@
+<head>
+  <title>Show/Add multiple markers to Google Maps in asp.net website</title>
+  <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+  </style>
+  <script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBTrbw_pao6-MLePaCp7FwkDWF5JRp_Tx0">
+  </script>
+  <script type="text/javascript">
+
+      var geocoder;
+      var map;
+
+      function initialize() {
+
+
+          geocoder = new google.maps.Geocoder();
+          // =============================================
+          // Markers data loop
+          // =============================================
+          var markers = [
+              <% for i in 0..@businesses.length-1 do %>
+              {
+                  lat: <%= @businesses[i].latitude %>,
+                  lng: <%= @businesses[i].longitude %>,
+                  name: "<%= @businesses[i].name %>",
+                  title: '<h1>Hi</h1>'
+              },
+              <% end %>
+              {
+                  "title": "visakhapatnam",
+                  "lat": 17.518344187852207,
+                  "lng": 83.3203125,
+                  "description": "visakhapatnam"
+              }];
+
+          // =============================================
+          // Markers placement loop
+          // =============================================
+          var mapOptions = {
+              // Uncomment the code below to center the map on a certain location (override the auto current location)
+              // center: new google.maps.LatLng(11.44, 78.79),
+              zoom: 14,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+              //  marker:true
+          };
+            // ============= Info Widndow ======================
+
+
+            var contentString = 
+              '<div id="mapCard">' +
+              '<%= image_tag @businesses[i].biz_image.url(:medium) %> <br />' +
+              '<h1><%= @businesses[i].name %></h1> <hr />' +
+              '<p><%= number_to_phone@businesses[i].phone_number %></p>' +
+
+              "<p><%= @businesses[i].address_street + ' , ' +
+              @businesses[i].address_city + ' , ' +
+              @businesses[i].address_state + ' ' +
+              @businesses[i].address_zip.to_s
+              %> </p><hr />" +
+              '</div>'          
+
+            var infowindow = new google.maps.InfoWindow({
+              content: contentString,
+              maxWidth: 300
+            });
+
+            // ============= Maker loop ======================
+            map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+           
+            for (i = 0; i < markers.length; i++) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: data.title,
+                    icon: '../assets/twotone.png'
+                });
+                google.maps.event.addListener(marker, 'click', function(marker, name) {
+                  return function() {
+
+                    // Attaching a click event to the current marker
+                    // google.maps.event.addListener(marker, "click", function(e) {
+                    //     infoWindow.setContent(data.description);
+                    //     infoWindow.open(map, marker);
+                    // });
+                    infowindow.setContent(name);
+                    infowindow.open(map,marker);
+                  };
+                }(marker, data.name));
+            }
+
+          // =============================================
+          // This code adds current location of the user based on browser
+          // =============================================
+          // Try W3C Geolocation (Preferred)
+          if(navigator.geolocation) {
+              browserSupportFlag = true;
+              navigator.geolocation.getCurrentPosition(function(position) {
+                  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                  map.setCenter(initialLocation);
+              }, function() {
+                  handleNoGeolocation(browserSupportFlag);
+              });
+          }
+          // Browser doesn't support Geolocation
+          else {
+              browserSupportFlag = false;
+              handleNoGeolocation(browserSupportFlag);
+          }
+          function handleNoGeolocation(errorFlag) {
+              if (errorFlag == true) {
+                  alert("Geolocation service failed.");
+                  initialLocation = newyork;
+              } else {
+                  alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+                  initialLocation = siberia;
+              }
+              map.setCenter(initialLocation);
+          }
+      }
+
+      // =============================================
+      // User defined Location
+      // =============================================
+
+      function codeAddress() {
+          var address = document.getElementById('address').value;
+          geocoder.geocode( { 'address': address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  map.setCenter(results[0].geometry.location);
+                  var marker = new google.maps.Marker({
+                      map: map,
+                      position: results[0].geometry.location
+                  });
+              } else {
+                  alert('Geocode was not successful for the following reason: ' + status);
+              }
+          });
+      }
+
+
+  </script>
+</head>
+<body onload="initialize()">
+<form id="form1" runat="server">
+  <div id="panel">
+    <input id="address" type="textbox" value="Sydney, NSW">
+    <input type="button" value="Geocode" onclick="codeAddress()">
+  </div>
+  <div id="map_canvas" style="width: 500px; height: 400px"></div>
+
+
+              <% for i in 0..@businesses.length-1 do %>
+              <div id="mapCard">
+                <%= image_tag @businesses[i].biz_image.url(:medium) %> <br />
+                <h1><%= @businesses[i].name %></h1> <hr />
+                <p><%= number_to_phone@businesses[i].phone_number %></p>
+                <p><%= 
+                  @businesses[i].address_street
+                  @businesses[i].address_city
+                  @businesses[i].address_state
+                  @businesses[i].address_zip.to_s
+                %> </p><hr />
+              </div>
+              <% end %>
+
+
+</form>
+</body>
+</html>
