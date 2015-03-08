@@ -5,7 +5,7 @@
       body { height: 100%; margin: 0; padding: 0 }
       #map_canvas { height: 100% }
   </style>
-  <script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY">
+  <script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBTrbw_pao6-MLePaCp7FwkDWF5JRp_Tx0">
   </script>
   <script type="text/javascript">
 
@@ -24,7 +24,18 @@
               {
                   lat: <%= @businesses[i].latitude %>,
                   lng: <%= @businesses[i].longitude %>,
-                  name: "<%= @businesses[i].name %>",
+                  name:             
+                       '<div id="mapCard">' +
+                        '<%= image_tag @businesses[i].biz_image.url(:medium) %> <br />' +
+                        "<h1 id='fontSize'><%= @businesses[i].name %></h1> <hr />" +
+                        '<p><%= number_to_phone@businesses[i].phone_number %></p>' +
+
+                        "<p><%= @businesses[i].address_street + ', ' +
+                        @businesses[i].address_city + ', ' +
+                        @businesses[i].address_state + ' ' +
+                        @businesses[i].address_zip.to_s
+                        %> </p>" +
+                        '</div>',
                   title: '<h1>Hi</h1>'
               },
               <% end %>
@@ -76,7 +87,7 @@
                     position: myLatlng,
                     map: map,
                     title: data.title,
-                    icon: '../assets/twotone.png'
+                    icon: '../assets/twotonestore.png'
                 });
                 google.maps.event.addListener(marker, 'click', function(marker, name) {
                   return function() {
@@ -131,43 +142,33 @@
           geocoder.geocode( { 'address': address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                   map.setCenter(results[0].geometry.location);
+                  // Default marker placed after search of geocode
                   var marker = new google.maps.Marker({
                       map: map,
-                      position: results[0].geometry.location
+                      position: results[0].geometry.location,
+                      icon: '../assets/twotoneperson.png'
                   });
               } else {
                   alert('Geocode was not successful for the following reason: ' + status);
               }
           });
       }
-
-
   </script>
 </head>
+
+
+
 <body onload="initialize()">
+
 <form id="form1" runat="server">
+  
   <div id="panel">
-    <input id="address" type="textbox" value="Sydney, NSW">
-    <input type="button" value="Geocode" onclick="codeAddress()">
+    <input id="address" type="textbox" placeholder="Seach near you">
+    <input type="button" value="Search" onclick="codeAddress()">
   </div>
-  <div id="map_canvas" style="width: 500px; height: 400px"></div>
 
-
-              <% for i in 0..@businesses.length-1 do %>
-              <div id="mapCard">
-                <%= image_tag @businesses[i].biz_image.url(:medium) %> <br />
-                <h1><%= @businesses[i].name %></h1> <hr />
-                <p><%= number_to_phone@businesses[i].phone_number %></p>
-                <p><%= 
-                  @businesses[i].address_street
-                  @businesses[i].address_city
-                  @businesses[i].address_state
-                  @businesses[i].address_zip.to_s
-                %> </p><hr />
-              </div>
-              <% end %>
-
+      <div id="map_canvas" style="width: 500px; height: 400px"></div>
 
 </form>
 </body>
-</html>
+</html> 
