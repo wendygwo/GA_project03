@@ -33,8 +33,8 @@
 
 <!-- Only show log out link if someone is logged in -->
 <% if current_owner != nil %>
-	<%= link_to 'Log out', sessions_path, method: :delete %>
-	<%= link_to 'Back to my dashboard', owner_path(current_owner) %>
+	<%= link_to 'Log out', sessions_path, method: :delete, class: "logout btn btn-default btn-sm" %>
+	<%= link_to 'Back to my dashboard', owner_path(current_owner), class: "dash btn btn-default btn-sm" %>
 <% end %>
 
 <%= yield %>
