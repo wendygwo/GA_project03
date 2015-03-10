@@ -40,6 +40,8 @@ gem 'geocoder'
 
 gem 'httparty'
 
+gem 'figaro'
+
 gem 'yelp', require: 'yelp'
 
 group :development, :test do
