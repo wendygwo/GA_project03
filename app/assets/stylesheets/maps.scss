@@ -2,3 +2,64 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// Place all the styles related to the maps controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html {
+  height: 100%
+}
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0
+}
+#map_canvas {
+  width: 100%;
+  height: 600px;
+}
+
+//=================================================
+//Products on the map page
+//=================================================
+
+#productArea {
+
+}
+
+#productCard {
+// width: 30%;
+//  max-width: 325px;
+//  min-width: 150px;
+  border: 1px solid #fafafa;
+  border-radius: 10px;
+  float: left;
+//  margin: 10px;
+}
+
+#clear {
+  clear: both;
+  color: transparent;
+}
+
+#forCenter {
+  max-width: 1050px;
+//  background-color: blanchedalmond;
+  margin: 0 auto;
+}
+
+#hidden {
+  visibility: hidden;
+}
+
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
+  border-color: rgba(136, 50, 146, 0.8);
+  box-shadow: 0 1px 1px rgba(136, 50, 146, 0.075) inset, 0 0 8px rgba(136, 50, 146, 0.6);
+  outline: 0 none;
+}
+
+
+
+
+

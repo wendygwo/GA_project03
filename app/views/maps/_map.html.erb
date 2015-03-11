@@ -1,12 +1,9 @@
 <head>
   <title>Show/Add multiple markers to Google Maps in asp.net website</title>
-  <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map_canvas { height: 100% }
-  </style>
-  <script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key="+ENV['GMAPS_API']>
   </script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   <script type="text/javascript">
 
       var geocoder;
@@ -55,13 +52,13 @@
               zoom: 14,
               mapTypeId: google.maps.MapTypeId.ROADMAP
               //  marker:true
-          };
+          }; //End map options
             // ============= Info Widndow ======================
 
 
             var contentString = 
               '<div id="mapCard">' +
-              '<%= image_tag @businesses[i].biz_image.url(:medium) %> <br />' +
+              '<%= image_tag @businesses[i].biz_image.url(:thumb) %> <br />' +
               '<h1><%= @businesses[i].name %></h1> <hr />' +
               '<p><%= number_to_phone@businesses[i].phone_number %></p>' +
 
@@ -101,8 +98,29 @@
                     infowindow.open(map,marker);
                   };
                 }(marker, data.name));
-            }
+            }//End marker loop
 
+          // =============================================
+          // This code adds current location of the user based on browser
+
+        console.log('<%= params[:location] %>');
+        if ('<%= params[:location] %>' != ''){
+          console.log("<=%Geocoder.search(params[:location])%>");
+        
+          geocoder.geocode( { 'address': '<%= params[:location] %>'}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+              });
+              console.log('Geocode results:');
+              console.log(results);
+            } else {
+              alert("Geocode was not successful for the following reason: " + status);
+            }
+          });
+        } else {
           // =============================================
           // This code adds current location of the user based on browser
           // =============================================
@@ -130,8 +148,10 @@
                   initialLocation = siberia;
               }
               map.setCenter(initialLocation);
-          }
-      }
+          }//end handleNoGeolocation
+        } //End else
+
+    } //End initialize
 
       // =============================================
       // User defined Location
@@ -159,16 +179,80 @@
 
 
 <body onload="initialize()">
+  <%= form_tag products_path, :method => :get do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search by products", :name => nil %>
+  <% end %>
 
 <form id="form1" runat="server">
-  
-  <div id="panel">
-    <input id="address" type="textbox" placeholder="Seach near you">
-    <input type="button" value="Search" onclick="codeAddress()">
+
+
+
+  <div class="col-md-1">
+    <img src="../assets/eyes.png">
+  </div>
+  <div class="col-md-9">
+    <input id="address" type="textbox" placeholder="Seach near you" class="form-control input-lg ">
+  </div>
+  <!-- Wendy testing different google maps form tag -->
+  <%= form_tag maps_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :location, params[:location] %>
+      <%= submit_tag "Search Near", :name => nil %>
+    </p>
+  <% end %>
+
+  <div class="col-md-2">
+    <input type="button" value="Search LocalWyze" onclick="codeAddress()" class="btn btn-default btn-lg">
   </div>
 
-      <div id="map_canvas" style="width: 500px; height: 400px"></div>
-
+  <div class="col-md-12">
+    <div class="col-md-2">
+      <br/>
+      <button type="button" class="btn btn-default btn-lg btn-block">Shirts</button><br/>
+      <button type="button" class="btn btn-default btn-lg btn-block">Pants</button><br/>
+      <button type="button" class="btn btn-default btn-lg btn-block">Accessories </button><br/>
+      <button type="button" class="btn btn-default btn-lg btn-block">Sweaters</button><br/>
+      <button type="button" class="btn btn-default btn-lg btn-block">Fishing</button><br/>
+      <button type="button" class="btn btn-default btn-lg btn-block">Dancing</button><br/>
+      <button type="button" class="btn btn-default btn-lg btn-block">Sporty</button><br/>
+      <button type="button" class="btn btn-default btn-lg btn-block">Wadufug</button><br/>
+      <button type="button" class="btn btn-default btn-lg btn-block">Dresses</button><br/>
+    </div>
+    <div class="col-md-10">
+        <div id="map_canvas"></div>
+    </div>
+  </div>
 </form>
+
+
+<div class="col-md-12">
+  <h1>Products near you</h1><hr />
+</div>
+
+<div id="productArea">
+  <div id="forCenter">
+    <% @businesses.each do |business| %>
+
+      <% prods = business.products %>
+      <% prods.each do |p| %>
+        <%# for i in 0..prods.length-1 do %>
+          <div id="productCard" class="col-md-3">
+          <h2>Available at <%= business.name %></h2><br>
+          <h3>Address:<h3>
+            <p><%= business.address_street %>, <%= business.address_city %>, <%= business.address_state %>, <%= business.address_zip %></p><br>
+            <h3><%= p.name %></h3>
+            <%= image_tag p.product_image.url(:thumb) %><br />
+            <hr />
+            <p>Price: $<%= p.price %></p>
+            <p>Quantity: <%= p.quantity %></p>
+          </div>
+        <%# end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
 </body>
 </html> 

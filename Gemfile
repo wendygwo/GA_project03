@@ -37,6 +37,7 @@ gem "paperclip", "~> 4.2"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap_form'
 gem 'geocoder'
+gem 'searchkick' #added for search
 
 gem 'httparty'
 
