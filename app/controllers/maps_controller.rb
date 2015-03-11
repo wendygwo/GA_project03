@@ -4,7 +4,11 @@ class MapsController < ApplicationController
 
   def index
   	# @response = HTTParty.get("http://localhost:3000/businesses.json")
-  	@businesses = Business.all
+    if params[:location].present?
+      @businesses = Business.near(params[:location], 10, :order => "distance")
+    else
+      @businesses = Business.all
+    end
     @products = Product.all
   end
 
