@@ -1,11 +1,7 @@
 <head>
   <title>Show/Add multiple markers to Google Maps in asp.net website</title>
-  <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map_canvas { height: 100% }
-  </style>
-  <script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBTrbw_pao6-MLePaCp7FwkDWF5JRp_Tx0">
   </script>
   <script type="text/javascript">
 
@@ -61,7 +57,7 @@
 
             var contentString = 
               '<div id="mapCard">' +
-              '<%= image_tag @businesses[i].biz_image.url(:medium) %> <br />' +
+              '<%= image_tag @businesses[i].biz_image.url(:thumb) %> <br />' +
               '<h1><%= @businesses[i].name %></h1> <hr />' +
               '<p><%= number_to_phone@businesses[i].phone_number %></p>' +
 
@@ -160,14 +156,39 @@
 
 <body onload="initialize()">
 
+
+
 <form id="form1" runat="server">
-  
-  <div id="panel">
-    <input id="address" type="textbox" placeholder="Seach near you">
-    <input type="button" value="Search" onclick="codeAddress()">
+
+
+
+  <div class="col-md-1">
+    <img src="../assets/eyes.png">
+  </div>
+  <div class="col-md-9">
+    <input id="address" type="textbox" placeholder="Seach near you" class="form-control input-lg ">
+  </div>
+  <div class="col-md-2">
+    <input type="button" value="Search LocalWyze" onclick="codeAddress()" class="btn btn-default btn-lg">
   </div>
 
-      <div id="map_canvas" style="width: 500px; height: 400px"></div>
+<div class="col-md-12">
+  <div class="col-md-2">
+    <br/>
+    <button type="button" class="btn btn-default btn-lg btn-block">Shirts</button><br/>
+    <button type="button" class="btn btn-default btn-lg btn-block">Pants</button><br/>
+    <button type="button" class="btn btn-default btn-lg btn-block">Accessories </button><br/>
+    <button type="button" class="btn btn-default btn-lg btn-block">Sweaters</button><br/>
+    <button type="button" class="btn btn-default btn-lg btn-block">Fishing</button><br/>
+    <button type="button" class="btn btn-default btn-lg btn-block">Dancing</button><br/>
+    <button type="button" class="btn btn-default btn-lg btn-block">Sporty</button><br/>
+    <button type="button" class="btn btn-default btn-lg btn-block">Wadufug</button><br/>
+    <button type="button" class="btn btn-default btn-lg btn-block">Dresses</button><br/>
+  </div>
+  <div class="col-md-10">
+      <div id="map_canvas"></div>
+  </div>
+</div>
 
 </form>
 </body>
