@@ -42,6 +42,8 @@ gem 'httparty'
 
 gem 'figaro'
 
+gem 'rails_12factor'
+
 gem 'yelp', require: 'yelp'
 
 group :development, :test do
