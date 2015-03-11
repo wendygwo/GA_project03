@@ -78,4 +78,10 @@ class BusinessesController < ApplicationController
     def business_params
       params.require(:business).permit(:name, :email, :address_street, :address_city, :address_state, :address_zip, :phone_number, :website_url, :description, :facebook_link, :twitter_link, :google_plus_link, :pinterest_link, :biz_image)
     end
+
+    #yelp attempt (copied from Sam's ditto folder/places_controller.rb)
+    def yelp_search
+    @yelp = Yelp.client.search(params[:location], { term: params[:business] })
+    respond_with @yelp
+  end
 end

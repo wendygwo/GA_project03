@@ -2,7 +2,7 @@
 
 <h1>Welcome to <%= @business.name %> page!</h1>
 
-<%= link_to 'Edit business details', edit_business_path(@business) %>
+<%= link_to 'Edit business details', edit_business_path(@business), class: "ed1t btn btn-default btn-sm" %>
 
 <% if @business.biz_image_file_name != nil %>
   <%= image_tag @business.biz_image.url(:medium) %>
@@ -26,7 +26,7 @@
 
 <p>
   <!-- Sends e-mail with a subject line containing your business name -->
-  <strong><%= mail_to @business.email, 'E-mail us!', subject: "An e-mail from a customer about "+@business.name %></strong>
+  <strong><%= mail_to @business.email, 'E-mail us!', subject: "An e-mail from a customer about "+@business.name, class: "emai7 btn btn-default btn-sm" %></strong>
 </p>
 
 <p>
@@ -43,7 +43,7 @@
 
 <p>
   <!-- Create a link to the company's website -->
-  <%= link_to "Our company website", @business.website_url, target:  "_blank" %>
+  <%= link_to "Our company website", @business.website_url, target:  "_blank", class: "sit3 btn btn-default btn-sm" %>
 </p>
 
 <p>
@@ -82,7 +82,7 @@
       <td><%= product.category.category_name%></td>
     </tr>
     <tr>
-      <td colspan="2"><%= link_to 'Edit', edit_product_path(product) %></td>
+      <td colspan="2"><%= link_to 'Edit', edit_product_path(product), class: "ed1t btn btn-default btn-sm" %></td>
     </tr>
   </table>
 <% end %>
