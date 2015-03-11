@@ -18,9 +18,9 @@
       <tr>
         <td><%= business_owner.business %></td>
         <td><%= business_owner.owner %></td>
-        <td><%= link_to 'Show', business_owner %></td>
-        <td><%= link_to 'Edit', edit_business_owner_path(business_owner) %></td>
-        <td><%= link_to 'Destroy', business_owner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', business_owner, class: "sh0w btn btn-default btn-sm" %></td>
+        <td><%= link_to 'Edit', edit_business_owner_path(business_owner), class: "ed1t btn btn-default btn-sm" %></td>
+        <td><%= link_to 'Destroy', business_owner, method: :delete, data: { confirm: 'Are you sure?' }, class: "back btn btn-default btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,6 +28,6 @@
 
 <br>
 
-<%= link_to 'New Business owner', new_business_owner_path %>
+<%= link_to 'New Business owner', new_business_owner_path, class: "n3w btn btn-default btn-sm" %>
 
 </div>
