@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+
   <h4 class='text-danger'>All fields are required</h4>
   <div class="field">
     <%= f.text_field :name %>
@@ -29,6 +30,7 @@
   </div>
   <div class="field">
     <%= f.collection_select :category_id, @categories, :id, :category_name %>
+
   </div>
 
   <% if params[:business_id] != nil%>
