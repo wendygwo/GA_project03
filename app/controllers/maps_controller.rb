@@ -10,6 +10,8 @@ class MapsController < ApplicationController
       @businesses = Business.all
     end
     @products = Product.all
+
+    render :layout => false
   end
 
   def new

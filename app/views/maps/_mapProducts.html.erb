@@ -1,29 +1,15 @@
-<head>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-</head>
 
-
-<div class="col-md-12">
+<div class="row">
+<div id="productArea" class="col-md-12">
   <h2>All Products</h2><hr />
-</div>
-
-<div id="productArea">
-  <div id="forCenter">
     <% for i in 0..@products.length-1 do %>
         <div id="productCard" class="col-md-3">
           <h3><%= @products[i].name %></h3>
-          <%= image_tag @products[i].product_image.url("thumb") %><br />
+          <%=image_tag @products[i].product_image.url("thumb") %><br />
           <hr />
           <p>Price: $<%= @products[i].price %></p>
           <p>Quantity: <%= @products[i].quantity %></p>
         </div>
-
-
     <% end %>
-
-    <div id="clear">
-      .
-    </div>
-  </div>
 </div>
-
+</div>
