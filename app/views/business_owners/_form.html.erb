@@ -10,16 +10,17 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :business_id %><br>
-    <%= f.text_field :business_id %>
-  </div>
-  <div class="field">
-    <%= f.label :owner_id %><br>
-    <%= f.text_field :owner_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :business_id %><br>
+      <%= f.text_field :business_id %>
+    </div>
+    <div class="field">
+      <%= f.label :owner_id %><br>
+      <%= f.text_field :owner_id %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
   </div>
 <% end %>

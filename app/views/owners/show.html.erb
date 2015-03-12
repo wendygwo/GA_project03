@@ -59,7 +59,7 @@
     <tbody>
     <% @businesses.each do |business| %>
       <tr>
-        <td><%= link_to business.name, business_path(business) %></td>
+        <td><%= link_to business.name, business_path(business), class: "biz btn btn-default btn-sm" %></td>
         <td><%= business.email%></td>
         <td><%= business.website_url%></td>
         <td><%= link_to 'Edit this business', edit_business_path(business), class: "edit_business btn btn-default btn-sm" %></td>

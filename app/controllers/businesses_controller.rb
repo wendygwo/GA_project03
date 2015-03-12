@@ -12,6 +12,7 @@ class BusinessesController < ApplicationController
   def show
     # Get the products tied to this business
     @products = Product.where(business_id: @business.id)
+    @current_biz_owner_ids = BusinessOwner.where(business_id: @business.id).pluck('owner_id')
   end
 
   # GET /businesses/new
@@ -78,4 +79,23 @@ class BusinessesController < ApplicationController
     def business_params
       params.require(:business).permit(:name, :email, :address_street, :address_city, :address_state, :address_zip, :phone_number, :website_url, :description, :facebook_link, :twitter_link, :google_plus_link, :pinterest_link, :biz_image)
     end
+
+    #yelp attempt (copied from Sam's ditto folder/places_controller.rb)
+    def yelp_search
+    @yelp = Yelp.client.search(params[:location], { term: params[:business] })
+    respond_with @yelp
+    end
+
+    # from yelp's github page - under responses
+    ## search
+    # response = client.search('San Francisco')
+
+    # response.businesses
+    # # [<Business 1>, <Business 2>, ...]
+
+    # response.businesses[0].name
+    # # "Kim Makoi, DC"
+
+    # response.businesses[0].rating
+    # # 5.0
 end

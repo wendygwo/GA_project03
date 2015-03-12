@@ -2,7 +2,7 @@
 
 <h1>Listing Businesses</h1>
 
-<table>
+<table class="table-responsive">
   <thead>
     <tr>
       <th>Name</th>
@@ -42,9 +42,9 @@
         <td><%= business.pinterest_link %></td>
         <td><%= business.latitude %></td>
         <td><%= business.longitude %></td>
-        <td><%= link_to 'Show', business %></td>
-        <td><%= link_to 'Edit', edit_business_path(business) %></td>
-        <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', business, class: "sh0w btn btn-default btn-sm" %></td>
+        <td><%= link_to 'Edit', edit_business_path(business), class: "ed1t btn btn-default btn-sm" %></td>
+        <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' }, class: "de7ete btn btn-default btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -52,4 +52,6 @@
 
 <br>
 
-<%= link_to 'New Business', new_business_path %>
+<%= link_to 'New Business', new_business_path, class: "n3w btn btn-default btn-sm" %>
+
+

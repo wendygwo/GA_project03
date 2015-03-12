@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+
+  <h4 class='text-danger'>All fields are required</h4>
   <div class="field">
     <%= f.text_field :name %>
   </div>
@@ -27,16 +29,19 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%#= f.text_field :category %>
     <%= f.collection_select :category_id, @categories, :id, :category_name %>
-  </div>
- <div class="field">
-    <%#= f.label :business_id %><br>
-    <%# f.text_field :business_id, value:params[:business_id] %>
-  </div> 
 
-  <!-- Using a hidden field to pass the owner_id! -->
-  <%= f.hidden_field :business_id, value:params[:business_id] %>
+  </div>
+
+  <% if params[:business_id] != nil%>
+    <!-- Using a hidden field to pass the owner_id! -->
+    <%= f.hidden_field :business_id, value:params[:business_id] %>
+  <% else %>
+    <!-- If the form errors, the address bar clears out the business id -->
+    <!-- This grabs the business id from the params hash that's sent back into the view after the form validation comes back with errors -->
+    <%= f.hidden_field :business_id, value:params[:product][:business_id] %>
+  <%end %>
+
 
   <div class="actions">
     <%= f.submit %>
