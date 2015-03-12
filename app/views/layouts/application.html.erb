@@ -32,22 +32,29 @@
 </h1>
 
 <!-- Only show log out link if someone is logged in -->
-<% if current_owner != nil %>
-	<%= link_to 'Log out', sessions_path, method: :delete, class: "logout btn btn-default btn-sm" %>
-	<%= link_to 'Back to my dashboard', owner_path(current_owner), class: "dash btn btn-default btn-sm" %>
-<% end %>
+  <div class="col-md-12 ">
+    <% if current_owner != nil %>
+        <div>
+	      <%= link_to 'Log out', sessions_path, method: :delete, class: "logout btn btn-default btn-sm col-md-2" %>
+        </div>
+        <div>
+          <%= link_to 'Back to my dashboard', owner_path(current_owner), class: "dash btn btn-default btn-sm col-md-2" %>
+        </div>
+    <% end %>
+  </div>
+
 
 <%= yield %>
 
-<!-- This is for troubleshooting only. Delete this later -->
-<font color='red'>
-	<br>
-	<hr>
-	<h3>Parameters (for troubleshooting. delete later!)</h3>
-	<%= params.inspect %>
-	<p>Session ID: <p>
-	<%=session['owner_id']%>
-</font>
+<!--&lt;!&ndash; This is for troubleshooting only. Delete this later &ndash;&gt;-->
+<!--<font color='red'>-->
+	<!--<br>-->
+	<!--<hr>-->
+	<!--<h3>Parameters (for troubleshooting. delete later!)</h3>-->
+	<!--<%#= params.inspect %>-->
+	<!--<p>Session ID: <p>-->
+	<!--<%#=session['owner_id']%>-->
+<!--</font>-->
 
 </div>
 </body>
