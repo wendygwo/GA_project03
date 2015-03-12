@@ -2,11 +2,18 @@
 
 <h1>Welcome to <%= @business.name %> page!</h1>
 
-<%= link_to 'Edit business details', edit_business_path(@business), class: "ed1t btn btn-default btn-sm" %>
-
-<% if @business.biz_image_file_name != nil %>
-  <%= image_tag @business.biz_image.url(:medium) %>
+<% if @current_biz_owner_ids.include?(current_owner.id) %>
+  <div class='row'>
+    <%= link_to 'Edit business details', edit_business_path(@business), class: "ed1t btn btn-default btn-sm" %>
+    <%= link_to 'Add new products', new_product_path(business_id: @business.id), class: "ed1t btn btn-default btn-sm" %>
+  </div>
 <% end %>
+
+<div class='row'>
+  <% if @business.biz_image_file_name != nil %>
+    <%= image_tag @business.biz_image.url(:medium) %>
+  <% end %>
+</div>
 
 <!-- The link to might need to be changed if the images get broken on heroku -->
 <div id='socialMediaIcons'>
@@ -41,49 +48,37 @@
   <%= @business.phone_number %>
 </p>
 
-<p>
-  <!-- Create a link to the company's website -->
-  <%= link_to "Our company website", @business.website_url, target:  "_blank", class: "sit3 btn btn-default btn-sm" %>
-</p>
+<% if @business.website_url != '' %>
+  <p>
+    <!-- Create a link to the company's website -->
+    <%= link_to "Our company website", @business.website_url, target:  "_blank", class: "sit3 btn btn-default btn-sm" %>
+  </p>
+
+<% end %>
 
 <p>
   <strong>Description:</strong><br />
   <%= @business.description %>
 </p>
 
-<h2>My products</h2>
-<% @products.each do |product| %>
-  <table class='product'>
-    <tr>
-      <td colspan="2">
-        <%= link_to product_path(product) do %> 
-          <%= image_tag product.product_image.url(:medium) %>
+<div class='row'>
+  <% if @products.count != 0%>
+    <h2>My products</h2>
+    <% @products.each do |product| %>
+      <div id="productCard" class="col-md-3">
+        <h3><%= product.name %></h3>
+        <%= image_tag product.product_image.url(:thumb) %><br />
+        <p>Price: $<%= product.price %></p>
+        <p>Quantity: <%= product.quantity %></p>
+        <!-- Checks to see if the logged in owner owns the business this product is shown on -->
+        <!-- If they are, they have access to the edit product link -->
+        <!-- If they aren't, they won't have access to the edit product link -->
+        <% if @current_biz_owner_ids.include?(current_owner.id) %>
+          <%= link_to 'Edit', edit_product_path(product, business_id: @business.id), class: "ed1t btn btn-default btn-sm" %>
         <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>Product name:</th>
-      <td><%= product.name %></td>
-    </tr>
-    <tr>
-      <th>Quantity</th>
-      <td><%= product.quantity%></td>
-    </tr>
-    <tr>
-      <th>Price</th>
-      <td>$<%= product.price%></td>
-    </tr>
-    <tr>
-      <th>Description</th>
-      <td><%= product.description %></td>
-    </tr>
-    <tr>
-      <th>Category</th>
-      <td><%= product.category.category_name%></td>
-    </tr>
-    <tr>
-      <td colspan="2"><%= link_to 'Edit', edit_product_path(product), class: "ed1t btn btn-default btn-sm" %></td>
-    </tr>
-  </table>
-<% end %>
-
+      </div>
+    <% end %>
+  <% else %>
+    <h2>This store currently has no products</h2>
+  <% end %>
+</div>

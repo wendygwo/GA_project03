@@ -4,19 +4,21 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    if params[:search].present?
-      # Added for search
-      @products = Product.search params[:search],
-                                 fields: [{name: :word_middle},
-                                          {description: :word_middle}]
-    else
+    # # Implemented for search
+    # if params[:search].present?
+    #   # Added for search
+    #   @products = Product.search params[:search],
+    #                              fields: [{name: :word_middle},
+    #                                       {description: :word_middle}]
+    # else
       @products = Product.all
-    end
+    # end
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    @current_biz_owner_ids = BusinessOwner.where(business_id: @product.business_id).pluck('owner_id')
   end
 
   # GET /products/new
@@ -35,6 +37,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     # raise params.inspect
+    @categories = Category.all
 
     respond_to do |format|
       if @product.save

@@ -27,10 +27,11 @@
   <%= @product.category.category_name %>
 </p>
 
-<!-- <p>
-  <strong>Business:</strong>
-  <%#= @product.business %>
-</p> -->
+<!-- Checks to see if the logged in owner owns the business this product is shown on -->
+<!-- If they are, they have access to the edit product link -->
+<!-- If they aren't, they won't have access to the edit product link -->
+<% if @current_biz_owner_ids.include?(current_owner.id) %>
+  <%= link_to 'Edit', edit_product_path(@product, business_id: @product.business_id), class: "ed1t btn btn-default btn-sm" %>
+<% end %>
 
-<%= link_to 'Edit', edit_product_path(@product), class: "ed1t btn btn-default btn-sm" %> |
-<%= link_to 'Back', products_path, class: "back btn btn-default btn-sm" %>
+  

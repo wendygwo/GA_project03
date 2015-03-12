@@ -12,6 +12,7 @@ class BusinessesController < ApplicationController
   def show
     # Get the products tied to this business
     @products = Product.where(business_id: @business.id)
+    @current_biz_owner_ids = BusinessOwner.where(business_id: @business.id).pluck('owner_id')
   end
 
   # GET /businesses/new
