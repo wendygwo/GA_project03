@@ -35,6 +35,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     # raise params.inspect
+    @categories = Category.all
 
     respond_to do |format|
       if @product.save

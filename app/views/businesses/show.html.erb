@@ -2,11 +2,16 @@
 
 <h1>Welcome to <%= @business.name %> page!</h1>
 
-<%= link_to 'Edit business details', edit_business_path(@business), class: "ed1t btn btn-default btn-sm" %>
+<div class='row'>
+  <%= link_to 'Edit business details', edit_business_path(@business), class: "ed1t btn btn-default btn-sm" %>
+  <%= link_to 'Add new products', new_product_path(business_id: @business.id), class: "ed1t btn btn-default btn-sm" %>
+</div>
 
-<% if @business.biz_image_file_name != nil %>
-  <%= image_tag @business.biz_image.url(:medium) %>
-<% end %>
+<div class='row'>
+  <% if @business.biz_image_file_name != nil %>
+    <%= image_tag @business.biz_image.url(:medium) %>
+  <% end %>
+</div>
 
 <!-- The link to might need to be changed if the images get broken on heroku -->
 <div id='socialMediaIcons'>
