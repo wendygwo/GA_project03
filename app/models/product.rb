@@ -2,8 +2,8 @@ class Product < ActiveRecord::Base
   belongs_to :business
   belongs_to :category
 
-  # Added for search
-  searchkick word_middle: [:name, :description]
+  # # Added for search
+  # searchkick word_middle: [:name, :description]
 
   # Validates presence of all product fields
   validates_presence_of :name, :quantity, :price, :description, :product_image, :category_id
