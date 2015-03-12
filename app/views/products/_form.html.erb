@@ -10,30 +10,31 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <div class="field">
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.number_field :quantity %>
+    </div>
+    <div class="field">
+      <%= f.text_field :price %>
+    </div>
+    <div class="field">
+      <%= f.file_field :product_image %>
+    </div> 
+    <div class="field">
+      <%= f.text_field :description %>
+    </div>
+    <div class="field">
+      <%#= f.text_field :category %>
+      <%= f.collection_select :category_id, @categories, :id, :category_name %>
+    </div>
+    <div class="field">
+      <%#= f.label :business_id %><br>
+      <%# f.text_field :business_id, value:params[:business_id] %>
+    </div> 
   </div>
-  <div class="field">
-    <%= f.number_field :quantity %>
-  </div>
-  <div class="field">
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.file_field :product_image %>
-  </div> 
-  <div class="field">
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%#= f.text_field :category %>
-    <%= f.collection_select :category_id, @categories, :id, :category_name %>
-  </div>
- <div class="field">
-    <%#= f.label :business_id %><br>
-    <%# f.text_field :business_id, value:params[:business_id] %>
-  </div> 
 
   <!-- Using a hidden field to pass the owner_id! -->
   <%= f.hidden_field :business_id, value:params[:business_id] %>
