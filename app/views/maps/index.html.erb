@@ -1,4 +1,59 @@
-<hr />
-<br />
-<%= render 'map' %>
-<%= render 'mapProducts' %>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <title>LocalWyze</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <script type="text/javascript">
+
+      /* Replace #your_subdomain# by the subdomain of a Site in your OneAll account */
+      var oneall_subdomain = 'https://localwyze.api.oneall.com/';
+
+      /* The library is loaded asynchronously */
+      // var oa = document.createElement('script');
+      // oa.type = 'text/javascript'; oa.async = true;
+      // oa.src = '//' + oneall_subdomain + '.api.oneall.com/socialize/library.js';
+      // var s = document.getElementsByTagName('script')[0];
+      // s.parentNode.insertBefore(oa, s);
+
+  </script>
+
+</head>
+<body>
+<div class="container-fluid">
+
+  <h1 class="header">
+  </h1>
+
+  <div class="col-md-12 ">
+    <% if current_owner != nil %>
+        <div>
+          <%= link_to 'Back to my dashboard', owner_path(current_owner), class: "dash btn btn-default btn-sm col-md-2 col-md-offset-9" %>
+        </div>
+        <div>
+          <%= link_to 'Log out', sessions_path, method: :delete, class: "logout btn btn-default btn-sm col-md-1 " %>
+        </div>
+    <% end %>
+  </div>
+
+
+
+
+  <%= render 'map' %>
+  <%#= render 'mapProducts' %>
+
+
+</div>
+</body>
+</html>
+

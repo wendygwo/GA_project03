@@ -2,8 +2,8 @@
   <title>Show/Add multiple markers to Google Maps in asp.net website</title>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   <script type="text/javascript" src = "https://maps.googleapis.com/maps/api/js?key="+ENV['GMAPS_API']>
+
   </script>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   <script type="text/javascript">
 
       var geocoder;
@@ -21,7 +21,7 @@
               {
                   lat: <%= @businesses[i].latitude %>,
                   lng: <%= @businesses[i].longitude %>,
-                  name:             
+                  name:
                        '<div id="mapCard">' +
                         '<%= image_tag @businesses[i].biz_image.url(:medium) %> <br />' +
                         "<h1 id='fontSize'><%= @businesses[i].name %></h1> <hr />" +
@@ -56,7 +56,7 @@
             // ============= Info Widndow ======================
 
 
-            var contentString = 
+            var contentString =
               '<div id="mapCard">' +
               '<%= image_tag @businesses[i].biz_image.url(:thumb) %> <br />' +
               '<h1><%= @businesses[i].name %></h1> <hr />' +
@@ -67,7 +67,7 @@
               @businesses[i].address_state + ' ' +
               @businesses[i].address_zip.to_s
               %> </p><hr />" +
-              '</div>'          
+              '</div>'
 
             var infowindow = new google.maps.InfoWindow({
               content: contentString,
@@ -76,7 +76,7 @@
 
             // ============= Maker loop ======================
             map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-           
+
             for (i = 0; i < markers.length; i++) {
                 var data = markers[i]
                 var myLatlng = new google.maps.LatLng(data.lat, data.lng);
@@ -106,13 +106,15 @@
         console.log('<%= params[:location] %>');
         if ('<%= params[:location] %>' != ''){
           console.log("<=%Geocoder.search(params[:location])%>");
-        
+
           geocoder.geocode( { 'address': '<%= params[:location] %>'}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
               map.setCenter(results[0].geometry.location);
               var marker = new google.maps.Marker({
                   map: map,
-                  position: results[0].geometry.location
+                  position: results[0].geometry.location,
+                  icon: '../assets/twotoneperson.png'
+
               });
               console.log('Geocode results:');
               console.log(results);
@@ -125,6 +127,7 @@
           // This code adds current location of the user based on browser
           // =============================================
           // Try W3C Geolocation (Preferred)
+
           if(navigator.geolocation) {
               browserSupportFlag = true;
               navigator.geolocation.getCurrentPosition(function(position) {
@@ -167,6 +170,7 @@
                       map: map,
                       position: results[0].geometry.location,
                       icon: '../assets/twotoneperson.png'
+
                   });
               } else {
                   alert('Geocode was not successful for the following reason: ' + status);
@@ -176,83 +180,73 @@
   </script>
 </head>
 
+    <div class="col-md-12">
+      <img src="../assets/smallLogo.png">
+    </div>
 
+    <form id="form1" runat="server">
+    <div id="searchBar" class="col-md-12">
+      <%= form_tag maps_path, :method => :get do %>
 
-<body onload="initialize()">
-  <%= form_tag products_path, :method => :get do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search by products", :name => nil %>
-  <% end %>
+          <div class="col-md-10">
+            <%= text_field_tag :location, params[:location], :class => "form-control" %>
+            </div>
+          <div class="col-md-1">
+            <%= submit_tag "Search close to you", :name => nil, :class => "btn btn-danger" %>
+          </div>
+      <% end %>
+    </div>
 
-<form id="form1" runat="server">
+  <!--============================================ Map =========================================== -->
+      <div class="col-md-12">
+          <div id="map_canvas"></div>
+      </div>
+  </form>
 
-
-
-  <div class="col-md-1">
-    <img src="../assets/eyes.png">
-  </div>
-  <div class="col-md-9">
-    <input id="address" type="textbox" placeholder="Seach near you" class="form-control input-lg ">
-  </div>
-  <!-- Wendy testing different google maps form tag -->
-  <%= form_tag maps_path, :method => :get do %>
-    <p>
-      <%= text_field_tag :location, params[:location] %>
-      <%= submit_tag "Search Near", :name => nil %>
-    </p>
-  <% end %>
-
-  <div class="col-md-2">
-    <input type="button" value="Search LocalWyze" onclick="codeAddress()" class="btn btn-default btn-lg">
-  </div>
+  <!--======================================== Products Area ===================================== -->
 
   <div class="col-md-12">
-    <div class="col-md-2">
-      <br/>
-      <button type="button" class="btn btn-default btn-lg btn-block">Shirts</button><br/>
-      <button type="button" class="btn btn-default btn-lg btn-block">Pants</button><br/>
-      <button type="button" class="btn btn-default btn-lg btn-block">Accessories </button><br/>
-      <button type="button" class="btn btn-default btn-lg btn-block">Sweaters</button><br/>
-      <button type="button" class="btn btn-default btn-lg btn-block">Fishing</button><br/>
-      <button type="button" class="btn btn-default btn-lg btn-block">Dancing</button><br/>
-      <button type="button" class="btn btn-default btn-lg btn-block">Sporty</button><br/>
-      <button type="button" class="btn btn-default btn-lg btn-block">Wadufug</button><br/>
-      <button type="button" class="btn btn-default btn-lg btn-block">Dresses</button><br/>
-    </div>
-    <div class="col-md-10">
-        <div id="map_canvas"></div>
-    </div>
+    <h1>Products near you</h1><hr />
   </div>
-</form>
 
+  <body onload="initialize()">
 
-<div class="col-md-12">
-  <h1>Products near you</h1><hr />
-</div>
-
-<div id="productArea">
-  <div id="forCenter">
-    <% @businesses.each do |business| %>
-
-      <% prods = business.products %>
-      <% prods.each do |p| %>
-        <%# for i in 0..prods.length-1 do %>
-          <div id="productCard" class="col-md-3">
-          <h2>Available at <%= business.name %></h2><br>
-          <h3>Address:<h3>
-            <p><%= business.address_street %>, <%= business.address_city %>, <%= business.address_state %>, <%= business.address_zip %></p><br>
-            <h3><%= p.name %></h3>
-            <%= image_tag p.product_image.url(:thumb) %><br />
-            <hr />
-            <p>Price: $<%= p.price %></p>
-            <p>Quantity: <%= p.quantity %></p>
-          </div>
-        <%# end %>
-      <% end %>
+  <div class="col-md-12">
+    <%= form_tag products_path, :method => :get do %>
+        <div class="col-md-10">
+          <%= text_field_tag :search, params[:search], :class => "form-control" %>
+        </div>
+        <div class="col-md-2">
+          <%= submit_tag "Search by products", :name => nil, :class => "btn btn-danger"%>
+        </div>
     <% end %>
   </div>
-</div>
+  <br />
+
+  <div class="row">
+  <div id="productArea" class="col-md-12">
+
+      <% @businesses.each do |business| %>
+        <% prods = business.products %>
+        <% prods.each do |p| %>
+            <div id="productCard" class="col-md-3">
+
+              <h4><%= p.name %></h4>
+              <%= image_tag p.product_image.url(:thumb) %><br />
+              <hr />
+              <p>Price: $<%= p.price %></p>
+              <p>Quantity: <%= p.quantity %></p>
+              <hr />
+              <%= link_to 'See more from this business', business %>
+            </div>
+          <%# end %>
+        <% end %>
+      <% end %>
+
+  </div>
+  </div>
+
 
 
 </body>
-</html> 
+</html>
