@@ -10,49 +10,50 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <div class="field">
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.file_field :biz_image %>
+    </div> 
+    <div class="field">
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.text_field :address_street %>
+    </div>
+    <div class="field">
+      <%= f.text_field :address_city %>
+    </div>
+    <div class="field">
+      <%= f.text_field :address_state %>
+    </div>
+    <div class="field">
+      <%= f.number_field :address_zip %>
+    </div>
+    <div class="field">
+      <%= f.text_field :phone_number %>
+    </div>
+    <div class="field">
+      <%= f.text_field :website_url %>
+    </div>
+    <div class="field">
+      <%= f.text_field :description %>
+    </div>
+    <div class="field">
+      <%= f.text_field :facebook_link %>
+    </div>
+    <div class="field">
+      <%= f.text_field :twitter_link %>
+    </div>
+    <div class="field">
+      <%= f.text_field :google_plus_link %>
+    </div>
+    <div class="field">
+      <%= f.text_field :pinterest_link %>
+    </div> 
   </div>
-  <div class="field">
-    <%= f.file_field :biz_image %>
-  </div> 
-  <div class="field">
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.text_field :address_street %>
-  </div>
-  <div class="field">
-    <%= f.text_field :address_city %>
-  </div>
-  <div class="field">
-    <%= f.text_field :address_state %>
-  </div>
-  <div class="field">
-    <%= f.number_field :address_zip %>
-  </div>
-  <div class="field">
-    <%= f.text_field :phone_number %>
-  </div>
-  <div class="field">
-    <%= f.text_field :website_url %>
-  </div>
-  <div class="field">
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.text_field :facebook_link %>
-  </div>
-  <div class="field">
-    <%= f.text_field :twitter_link %>
-  </div>
-  <div class="field">
-    <%= f.text_field :google_plus_link %>
-  </div>
-  <div class="field">
-    <%= f.text_field :pinterest_link %>
-  </div> 
 
   <div class="actions">
     <%= f.submit %>

@@ -83,5 +83,18 @@ class BusinessesController < ApplicationController
     def yelp_search
     @yelp = Yelp.client.search(params[:location], { term: params[:business] })
     respond_with @yelp
-  end
+    end
+
+    # from yelp's github page - under responses
+    ## search
+    # response = client.search('San Francisco')
+
+    # response.businesses
+    # # [<Business 1>, <Business 2>, ...]
+
+    # response.businesses[0].name
+    # # "Kim Makoi, DC"
+
+    # response.businesses[0].rating
+    # # 5.0
 end
