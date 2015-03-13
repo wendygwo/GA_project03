@@ -30,8 +30,11 @@
 <!-- Checks to see if the logged in owner owns the business this product is shown on -->
 <!-- If they are, they have access to the edit product link -->
 <!-- If they aren't, they won't have access to the edit product link -->
+<% if current_owner != nil %>
 <% if @current_biz_owner_ids.include?(current_owner.id) %>
   <%= link_to 'Edit', edit_product_path(@product, business_id: @product.business_id), class: "ed1t btn btn-default btn-sm" %>
+<% end %>
+
 <% end %>
 
   
