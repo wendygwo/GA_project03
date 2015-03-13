@@ -71,7 +71,7 @@
                     position: myLatlng,
                     map: map,
                     title: data.title,
-                    icon: '/assets/twotonestore.png'
+                    icon: '../assets/twotonestore.png'
                 });
                 google.maps.event.addListener(marker, 'click', function(marker, name) {
                   return function() {
@@ -100,7 +100,7 @@
               var marker = new google.maps.Marker({
                   map: map,
                   position: results[0].geometry.location,
-                  icon: '/assets/twotoneperson.png'
+                  icon: '../assets/twotoneperson.png'
 
               });
               console.log('Geocode results:');
@@ -156,7 +156,7 @@
                   var marker = new google.maps.Marker({
                       map: map,
                       position: results[0].geometry.location,
-                      icon: '/assets/twotoneperson.png'
+                      icon: '../assets/twotoneperson.png'
 
                   });
               } else {
