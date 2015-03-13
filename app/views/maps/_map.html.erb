@@ -19,7 +19,7 @@
           var markers = [
               <% for i in 0...@businesses.length do %>
               {
-                  puts @businesses[i].inspect
+                  // puts @businesses[i].inspect
                   lat: <%= @businesses[i].latitude %>,
                   lng: <%= @businesses[i].longitude %>,
                   name:
@@ -57,23 +57,7 @@
             // ============= Info Widndow ======================
 
 
-            var contentString =
-              '<div id="mapCard">' +
-              '<%= image_tag @businesses[i].biz_image.url(:thumb) %> <br />' +
-              '<h1><%= @businesses[i].name %></h1> <hr />' +
-              '<p><%= number_to_phone@businesses[i].phone_number %></p>' +
 
-              "<p><%= @businesses[i].address_street + ' , ' +
-              @businesses[i].address_city + ' , ' +
-              @businesses[i].address_state + ' ' +
-              @businesses[i].address_zip.to_s
-              %> </p><hr />" +
-              '</div>'
-
-            var infowindow = new google.maps.InfoWindow({
-              content: contentString,
-              maxWidth: 300
-            });
 
             // ============= Maker loop ======================
             map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
