@@ -14,7 +14,8 @@ class CreateBusinesses < ActiveRecord::Migration
       t.string :twitter_link
       t.string :google_plus_link
       t.string :pinterest_link
-
+      t.float :latitude
+      t.float :longitude
       t.timestamps null: false
     end
   end
