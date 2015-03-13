@@ -30,29 +30,8 @@
 
 </head>
 <body>
+<br />
 <div class="container-fluid">
-
-  <h1 class="header">
-  </h1>
-
-  <div class="col-md-12 ">
-    <% if current_owner != nil %>
-        <div>
-        <%= link_to 'Log out', sessions_path, method: :delete, class: "logout btn btn-default btn-sm col-md-2" %>
-        </div>
-        <div>
-          <%= link_to 'Back to my dashboard', owner_path(current_owner), class: "dash btn btn-default btn-sm col-md-2" %>
-        </div>
-    <% else %>
-        <div>
-          <%= link_to 'Business owner log in', new_session_path, class: "logout btn btn-default btn-sm col-md-2 col-md-offset-8" %>
-        </div>
-        <div>
-        <%= link_to 'Business owner sign up?', new_owner_path, class: "logout btn btn-default btn-sm col-md-2" %>
-        </div>
-    <% end %>
-  </div>
-
 
 
 
