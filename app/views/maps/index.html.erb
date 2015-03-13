@@ -38,11 +38,13 @@
   <div class="col-md-12 ">
     <% if current_owner != nil %>
         <div>
-          <%= link_to 'Back to my dashboard', owner_path(current_owner), class: "dash btn btn-default btn-sm col-md-2 col-md-offset-9" %>
+        <%= link_to 'Log out', sessions_path, method: :delete, class: "logout btn btn-default btn-sm col-md-2" %>
         </div>
         <div>
-          <%= link_to 'Log out', sessions_path, method: :delete, class: "logout btn btn-default btn-sm col-md-1 " %>
+          <%= link_to 'Back to my dashboard', owner_path(current_owner), class: "dash btn btn-default btn-sm col-md-2" %>
         </div>
+    <% else %>
+        <%= link_to 'Are you a business owner?', new_business_path, class: "logout btn btn-default btn-sm col-md-2 col-md-offset-10" %>
     <% end %>
   </div>
 
@@ -56,4 +58,3 @@
 </div>
 </body>
 </html>
-
