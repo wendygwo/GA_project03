@@ -232,12 +232,17 @@
             <div id="productCard" class="col-md-3">
 
               <h4><%= p.name %></h4>
-              <%= image_tag p.product_image.url(:thumb) %><br />
+
+              <%= link_to product_path(p) do %>
+                  <%= image_tag p.product_image.url(:thumb)%>
+              <% end%>
+
+              <%#= image_tag p.product_image.url(:thumb) %><br />
               <hr />
               <p>Price: $<%= p.price %></p>
               <p>Quantity: <%= p.quantity %></p>
               <hr />
-              <%= link_to 'See more from this business', business %>
+              See more from: <%= link_to "#{business.name}", business_path(business) %>
             </div>
           <%# end %>
         <% end %>
