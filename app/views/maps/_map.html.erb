@@ -17,8 +17,9 @@
           // Markers data loop
           // =============================================
           var markers = [
-              <% for i in 0..@businesses.length-1 do %>
+              <% for i in 0...@businesses.length do %>
               {
+                  puts @businesses[i].inspect
                   lat: <%= @businesses[i].latitude %>,
                   lng: <%= @businesses[i].longitude %>,
                   name:
