@@ -3,7 +3,15 @@
 <head>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
   <title>LocalWyze</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -28,24 +36,36 @@
 </head>
 <body>
 <div class="container-fluid">
+<br />
 
-<h1 class="header">
-	<img src="http://johnnywhitfield.com/wp-content/uploads/2015/03/localwyzewhiteletters-1024x251.png" alt="LocalWyze logo" title="LocalWyze" />
-</h1>
 
-<!-- Only show log out link if someone is logged in -->
-  <div class="col-md-12 ">
-    <% if current_owner != nil %>
-        <div>
-	      <%= link_to 'Log out', sessions_path, method: :delete, class: "logout btn btn-default btn-sm col-md-2" %>
+
+
+    <div class="col-md-12 ">
+        <div class="col-md-6">
+          <%= image_tag image_url("highLogo.png") %>
         </div>
-        <div>
-          <%= link_to 'Back to my dashboard', owner_path(current_owner), class: "dash btn btn-default btn-sm col-md-2" %>
-        </div>
-    <% end %>
-  </div>
-
-
+      <% if current_owner != nil %>
+          <div>
+            <%= link_to 'Dashboard', owner_path(current_owner), class: "btn btn-info col-md-1 col-md-offset-4" %>
+          </div>
+          <div>
+          <%= link_to 'Log out', sessions_path, method: :delete, class: "btn btn-danger col-md-1" %>
+          </div>
+      <% else %>
+          <div class="col-md-2 col-md-offset-2">
+            <h4>Are you a business?</h4>
+          </div> 
+          <div>
+            <%= link_to 'Login', new_session_path, class: "logout btn btn-success btn col-md-1" %>
+          </div>
+          <div>
+          <%= link_to 'Sign up', new_owner_path, class: "logout btn btn-info btn col-md-1" %>
+          </div>
+      <% end %>
+    </div>
+<br />
+<hr />
 <%= yield %>
 
 <!--&lt;!&ndash; This is for troubleshooting only. Delete this later &ndash;&gt;-->

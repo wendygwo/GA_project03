@@ -11,48 +11,92 @@
     </div>
   <% end %>
 
+<!-- ####### Name ######## -->
   <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <div class="col-sm-4 col-sm-offset-4">
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name, :class => "form-control" %>
+    </div>
   </div>
+
+<!-- ####### Last Name ######## -->
   <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <div class="col-sm-4 col-sm-offset-4">  
+      <%= f.label :last_name %><br>  
+      <%= f.text_field :last_name, :class => "form-control" %>
+    </div>
   </div>
+
+<!-- ####### Address Street ######## -->
   <div class="field">
-    <%= f.label :address_street %><br>
-    <%= f.text_field :address_street %>
+    <div class="col-sm-4 col-sm-offset-4">   
+      <%= f.label :address_street %><br>
+      <%= f.text_field :address_street, :class => "form-control" %>
+    </div>
   </div>
+
+<!-- ####### Address city ######## -->
   <div class="field">
-    <%= f.label :address_city %><br>
-    <%= f.text_field :address_city %>
+    <div class="col-sm-4 col-sm-offset-4"> 
+      <%= f.label :address_city %><br>
+      <%= f.text_field :address_city, :class => "form-control" %>
+    </div>
   </div>
+
+<!-- ####### Address State ######## -->  
   <div class="field">
-    <%= f.label :address_state %><br>
-    <%= f.text_field :address_state %>
+    <div class="col-sm-4 col-sm-offset-4"> 
+      <%= f.label :address_state %><br>
+      <%= f.text_field :address_state, :class => "form-control" %>
+    </div>
   </div>
+
+<!-- ####### Address Zip ######## -->    
   <div class="field">
-    <%= f.label :address_zip %><br>
-    <%= f.number_field :address_zip %>
+    <div class="col-sm-4 col-sm-offset-4"> 
+      <%= f.label :address_zip %><br>
+      <%= f.number_field :address_zip, :class => "form-control" %>
+    </div>
   </div>
+
+<!-- ####### Phone ######## -->  
   <div class="field">
-    <%= f.label :phone_number %><br>
-    <%= f.text_field :phone_number %>
+    <div class="col-sm-4 col-sm-offset-4"> 
+      <%= f.label :phone_number %><br>
+      <%= f.text_field :phone_number, :class => "form-control" %>
+    </div>
   </div>
+
+<!-- ####### Email ######## -->    
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <div class="col-sm-4 col-sm-offset-4"> 
+      <%= f.label :email %><br>
+      <%= f.text_field :email, :class => "form-control" %>
+    </div>
   </div>
-  <!-- Added for password -->
+
+<!-- ####### Password ######## -->  
   <div class="field">
-    Password: 
-    <%=f.password_field :password %>
+    <div class="col-sm-4 col-sm-offset-4"> 
+      Password: 
+      <%=f.password_field :password, :class => "form-control" %>
+    </div>
   </div>
+
   <div class="field">
-    Password confirmation: 
-    <%=f.password_field :password_confirmation, label: "Confirm Password"%>
+    <div class="col-sm-4 col-sm-offset-4"> 
+      Password confirmation: 
+      <%=f.password_field :password_confirmation, label: "Confirm Password", :class => "form-control" %>
+    </div>
   </div>
+
+<!-- ####### Submit ######## -->
+
   <div class="actions">
-    <%= f.submit %>
+    <div class="col-sm-4 col-sm-offset-4">
+    <br /> 
+      <%= f.submit %>
+    </div>
+    <br /> 
   </div>
 <% end %>

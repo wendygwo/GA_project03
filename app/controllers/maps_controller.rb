@@ -11,7 +11,6 @@ class MapsController < ApplicationController
     end
     @products = Product.all
 
-    render :layout => false
   end
 
   def new
