@@ -3,7 +3,7 @@
 <div id="productArea" class="col-md-12">
   <h2>All Products</h2><hr />
     <% for i in 0..@products.length-1 do %>
-        <div id="productCard" class="col-md-3">
+        <div class="productCard" class="col-md-3">
           <h3><%= @products[i].name %></h3>
           <%=image_tag @products[i].product_image.url("thumb") %><br />
           <hr />

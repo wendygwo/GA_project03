@@ -1,71 +1,72 @@
+<br /> 
+<hr /> 
 <p id="notice"><%= notice %></p>
 
 <h1>Welcome to <%= @business.name %> page!</h1>
 
-<% if current_owner != nil %>
-<% if @current_biz_owner_ids.include?(current_owner.id) %>
-  <div class='row'>
-    <%= link_to 'Edit business details', edit_business_path(@business), class: "ed1t btn btn-default btn-sm" %>
-    <%= link_to 'Add new products', new_product_path(business_id: @business.id), class: "ed1t btn btn-default btn-sm" %>
+
+<div class="col-md-12 ">
+  <div class="col-md-3 ">
+    <% if @business.biz_image_file_name != nil %>
+      <%= image_tag @business.biz_image.url(:medium) %>
+    <% end %>
+  </div>  
+  <!-- The link to might need to be changed if the images get broken on heroku -->
+  <!-- <div id='socialMediaIcons'>
+    <%# if @business.facebook_link != ''%>
+      <%#= link_to(image_tag('facebook.png'),@business.facebook_link, target: "_blank") %>
+    <%# end %>
+    <%# if @business.twitter_link != ''%>
+      <%#= link_to(image_tag('twitter.png'), @business.twitter_link, target: "_blank") %>
+    <%# end %>
+    <%# if @business.google_plus_link != ''%>
+      <%#= link_to(image_tag('googleplus.png'), @business.google_plus_link, target: "_blank") %>
+    <%# end %>
+    <%# if @business.pinterest_link !='' %>
+      <%#= link_to(image_tag('pinterest.png'), @business.pinterest_link, target:  "_blank") %>
+    <%# end %>
+  </div> -->
+  <div class="col-md-2">
+    <p><strong>We're located at:</strong><br />
+    <%= @business.address_street %><br />
+    <%= @business.address_city %>, <%= @business.address_state %> 
+    <%= @business.address_zip %><p>
+
+    <p><strong>Phone number:</strong><br />
+    <%= @business.phone_number %></p>
+
+    <% if @business.website_url != '' %>
+      <!-- Create a link to the company's website -->
+      <%= link_to "Our company website", @business.website_url, target:  "_blank", class: "sit3 btn btn-default btn-sm" %>
+    <% end %>
+
+    <p><strong>Description:</strong><br />
+    <%= @business.description %></p>
+    
+    <!-- Sends e-mail with a subject line containing your business name -->
+    <p><strong><%= mail_to @business.email, 'E-mail us!', subject: "An e-mail from a customer about "+@business.name, class: "btn btn-primary btn-sm" %></strong></p>
   </div>
-<% end %>
-<% end %>
+  <div class="col-md-3">
+    <% if current_owner != nil %>
+    <% if @current_biz_owner_ids.include?(current_owner.id) %>
+    <div class='row'>
+        <%= link_to 'Edit business details', edit_business_path(@business), class: "btn btn-warning btn-sm" %>
+        <%= link_to 'Add new products', new_product_path(business_id: @business.id), class: "ed1t btn btn-success btn-sm" %>
+    </div>
+      <br />
+    <% end %>
+    <% end %>
+  </div>
 
-<div class='row'>
-  <% if @business.biz_image_file_name != nil %>
-    <%= image_tag @business.biz_image.url(:medium) %>
-  <% end %>
 </div>
 
-<!-- The link to might need to be changed if the images get broken on heroku -->
-<div id='socialMediaIcons'>
-  <% if @business.facebook_link != ''%>
-    <%= link_to(image_tag('facebook.png'),@business.facebook_link, target: "_blank") %>
-  <% end %>
-  <% if @business.twitter_link != ''%>
-    <%= link_to(image_tag('twitter.png'), @business.twitter_link, target: "_blank") %>
-  <% end %>
-  <% if @business.google_plus_link != ''%>
-    <%= link_to(image_tag('googleplus.png'), @business.google_plus_link, target: "_blank") %>
-  <% end %>
-  <% if @business.pinterest_link !='' %>
-    <%= link_to(image_tag('pinterest.png'), @business.pinterest_link, target:  "_blank") %>
-  <% end %>
-</div>
+<hr />
 
-<p>
-  <!-- Sends e-mail with a subject line containing your business name -->
-  <strong><%= mail_to @business.email, 'E-mail us!', subject: "An e-mail from a customer about "+@business.name, class: "emai7 btn btn-default btn-sm" %></strong>
-</p>
-
-<p>
-  <strong>We're located at:</strong><br />
-  <%= @business.address_street %><br />
-  <%= @business.address_city %>, <%= @business.address_state %> 
-  <%= @business.address_zip %>
-</p>
-
-<p>
-  <strong>Phone number:</strong><br />
-  <%= @business.phone_number %>
-</p>
-
-<% if @business.website_url != '' %>
-  <p>
-    <!-- Create a link to the company's website -->
-    <%= link_to "Our company website", @business.website_url, target:  "_blank", class: "sit3 btn btn-default btn-sm" %>
-  </p>
-
-<% end %>
-
-<p>
-  <strong>Description:</strong><br />
-  <%= @business.description %>
-</p>
-
+<div class="col-md-12 ">
 <div class='row'>
   <% if @products.count != 0%>
-    <h2>My products</h2>
+  <hr />
+    <h2>Products</h2>
     <% @products.each do |product| %>
       <div id="productCard" class="col-md-3">
         <h3><%= product.name %></h3>
@@ -77,7 +78,7 @@
         <!-- If they aren't, they won't have access to the edit product link -->
         <% if current_owner != nil %>
         <% if @current_biz_owner_ids.include?(current_owner.id) %>
-          <%= link_to 'Edit', edit_product_path(product, business_id: @business.id), class: "ed1t btn btn-default btn-sm" %>
+          <%= link_to 'Edit', edit_product_path(product, business_id: @business.id), class: "btn btn-warning btn-sm" %>
         <% end %>
         <% end %>
       </div>
@@ -85,4 +86,5 @@
   <% else %>
     <h2>This store currently has no products</h2>
   <% end %>
+</div>
 </div>
