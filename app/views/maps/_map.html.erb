@@ -33,6 +33,7 @@
                         @businesses[i].address_state + ' ' +
                         @businesses[i].address_zip.to_s
                         %> </p>" +
+                        'See more from: <%= link_to @businesses[i].name, business_path(@businesses[i]) %>' +
                         '</div>',
                   title: '<h1>Hi</h1>'
               },
