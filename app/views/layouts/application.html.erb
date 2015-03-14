@@ -43,7 +43,10 @@
 
     <div class="col-md-12 ">
         <div class="col-md-6">
-          <%= image_tag image_url("highLogo.png") %>
+          <%= link_to root_path() do %>
+                  <%= image_tag image_url("highLogo.png"), class: "img-responsive" %>
+              <% end%>
+          <%#= image_tag image_url("highLogo.png") %>
         </div>
       <% if current_owner != nil %>
           <div>

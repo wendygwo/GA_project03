@@ -1,40 +1,64 @@
-<p id="notice"><%= notice %></p>
+<br /> 
+<hr /> 
+<div class="col-md-12">
+  <div class="col-md-2">
+    <%= link_to 'Back to store', business_path(@product.business), class: "ed1t btn btn-warning btn-sm" %>
+  </div>
+  <div class="col-md-1">
+    <%= link_to 'Back to map', root_path, class: "ed1t btn btn-danger btn-sm" %>
+  </div>
 
-<h1><%=link_to @product.business.name, business_path(@product.business) %></h1>
-<h2><%= @product.name %></h2>
+</div>
 
-<p>
-  <%= image_tag @product.product_image.url("medium") %>
-</p>
+<div class="col-md-12">
+  <div class="col-md-5 col-md-offset-3">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Quantity:</strong>
-  <%= @product.quantity %>
-</p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+    <h1><%=link_to @product.business.name, business_path(@product.business) %></h1>
+    <h2><%= @product.name %></h2>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+    <p>
+      <%= image_tag @product.product_image.url("medium") %>
+    </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @product.category.category_name %>
-</p>
+    <p>
+      <strong>Quantity:</strong>
+      <%= @product.quantity %>
+    </p>
 
-<!-- Checks to see if the logged in owner owns the business this product is shown on -->
-<!-- If they are, they have access to the edit product link -->
-<!-- If they aren't, they won't have access to the edit product link -->
-<% if current_owner != nil %>
-<% if @current_biz_owner_ids.include?(current_owner.id) %>
-  <%= link_to 'Edit', edit_product_path(@product, business_id: @product.business_id), class: "ed1t btn btn-default btn-sm" %>
-<% end %>
+    <p>
+      <strong>Price:</strong>
+      <%= @product.price %>
+    </p>
 
-<% end %>
+    <p>
+      <strong>Description:</strong>
+      <%= @product.description %>
+    </p>
 
-  
+    <p>
+      <strong>Category:</strong>
+      <%= @product.category.category_name %>
+    </p>
+
+    <!-- Checks to see if the logged in owner owns the business this product is shown on -->
+    <!-- If they are, they have access to the edit product link -->
+    <!-- If they aren't, they won't have access to the edit product link -->
+    <% if current_owner != nil %>
+    <% if @current_biz_owner_ids.include?(current_owner.id) %>
+      <%= link_to 'Edit', edit_product_path(@product, business_id: @product.business_id), class: "ed1t btn btn-default btn-sm" %>
+    <% end %>
+
+    <% end %>
+
+    <div class="col-md-12">
+      <div class="col-md-2 col-md-offset-5">
+        <%= link_to 'View more', business_path(@product.business), class: "ed1t btn btn-info btn-sm" %>
+      </div> 
+        <br />
+        <br />
+        <br />
+      </div>
+    </div>
+</div>

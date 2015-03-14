@@ -238,6 +238,7 @@
               <hr />
               <p>Price: $<%= p.price %></p>
               <p>Quantity: <%= p.quantity %></p>
+              <%= link_to 'View', product_path(p), class: "btn btn-info btn" %>
               <hr />
               See more from: <%= link_to "#{business.name}", business_path(business) %>
             </div>

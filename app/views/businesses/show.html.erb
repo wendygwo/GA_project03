@@ -2,11 +2,11 @@
 <hr /> 
 <p id="notice"><%= notice %></p>
 
-<h1>Welcome to <%= @business.name %> page!</h1>
+<h1>Welcome to <%= @business.name %></h1>
 
 
 <div class="col-md-12 ">
-  <div class="col-md-3 ">
+  <div class="col-md-3 col-md-offset-4">
     <% if @business.biz_image_file_name != nil %>
       <%= image_tag @business.biz_image.url(:medium) %>
     <% end %>
@@ -68,11 +68,16 @@
   <hr />
     <h2>Products</h2>
     <% @products.each do |product| %>
-      <div id="productCard" class="col-md-3">
+      <div id="bizCard" class="col-md-3">
         <h3><%= product.name %></h3>
-        <%= image_tag product.product_image.url(:thumb) %><br />
+        <%= link_to product_path(product) do %>
+          <%= image_tag product.product_image.url(:thumb) %><br />
+        <% end%>
         <p>Price: $<%= product.price %></p>
         <p>Quantity: <%= product.quantity %></p>
+          <%= link_to 'View', product_path(product), class: "btn btn-info btn-sm" %>
+          <br />
+          <br />
         <!-- Checks to see if the logged in owner owns the business this product is shown on -->
         <!-- If they are, they have access to the edit product link -->
         <!-- If they aren't, they won't have access to the edit product link -->
