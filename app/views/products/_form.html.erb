@@ -1,3 +1,4 @@
+
 <%= bootstrap_form_for(@product) do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
@@ -46,4 +47,5 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  <br />
 <% end %>

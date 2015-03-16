@@ -1,10 +1,14 @@
+<br />
+<br /> 
+<br />  
+<hr /> 
 <div class="container-fluid">
 
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Owners</h1>
 
-<table class="table">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>First name</th>
@@ -30,9 +34,9 @@
         <td><%= owner.address_zip %></td>
         <td><%= owner.phone_number %></td>
         <td><%= owner.email %></td>
-        <td><%= link_to 'Show', owner, class: "sh0w btn btn-default btn-sm" %></td>
-        <td><%= link_to 'Edit', edit_owner_path(owner), class: "ed1t btn btn-default btn-sm" %></td>
-        <td><%= link_to 'Destroy', owner, method: :delete, data: { confirm: 'Are you sure?' }, class: "de5troy btn btn-default btn-sm" %></td>
+        <td><%= link_to 'Show', owner, class: " btn btn-success btn-sm" %></td>
+        <td><%= link_to 'Edit', edit_owner_path(owner), class: "btn btn-warning btn-sm" %></td>
+        <td><%= link_to 'Destroy', owner, method: :delete, data: { confirm: 'Are you sure?' }, class: "de5troy btn btn-danger btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,6 +44,6 @@
 
 <br>
 
-<%= link_to 'New Owner', new_owner_path, class: "new2 btn btn-default btn-sm" %>
+<%= link_to 'New Owner', new_owner_path, class: "btn btn-primary btn-sm" %>
 
 </div>

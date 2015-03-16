@@ -1,12 +1,14 @@
+<br />
 <br /> 
+<br />  
 <hr /> 
 <p id="notice"><%= notice %></p>
 
-<h1>Welcome to <%= @business.name %> page!</h1>
+<h1>Welcome to <%= @business.name %></h1>
 
 
 <div class="col-md-12 ">
-  <div class="col-md-3 ">
+  <div class="col-md-3 col-md-offset-4">
     <% if @business.biz_image_file_name != nil %>
       <%= image_tag @business.biz_image.url(:medium) %>
     <% end %>
@@ -57,34 +59,50 @@
     <% end %>
     <% end %>
   </div>
-
 </div>
+<br />
+<br />
+<br />
 
-<hr />
-
-<div class="col-md-12 ">
 <div class='row'>
-  <% if @products.count != 0%>
+  <div class="col-md-12">
+  <!-- 32 x 32 -->
+      <%= image_tag 'http://6znr8g7i2u1e6urycg61i18w.wpengine.netdna-cdn.com/wp-content/uploads/2013/12/flat-icon-facebook-150x150.png', class: "icon" %>
+  </div>
+</div>  
+
+
+
+
+<div class='row'>
+  <div class="col-md-12">
   <hr />
-    <h2>Products</h2>
-    <% @products.each do |product| %>
-      <div id="productCard" class="col-md-3">
-        <h3><%= product.name %></h3>
-        <%= image_tag product.product_image.url(:thumb) %><br />
-        <p>Price: $<%= product.price %></p>
-        <p>Quantity: <%= product.quantity %></p>
-        <!-- Checks to see if the logged in owner owns the business this product is shown on -->
-        <!-- If they are, they have access to the edit product link -->
-        <!-- If they aren't, they won't have access to the edit product link -->
-        <% if current_owner != nil %>
-        <% if @current_biz_owner_ids.include?(current_owner.id) %>
-          <%= link_to 'Edit', edit_product_path(product, business_id: @business.id), class: "btn btn-warning btn-sm" %>
-        <% end %>
-        <% end %>
-      </div>
-    <% end %>
+  <% if @products.count != 0%>
+  <h2>Products</h2>
+          <% @products.each do |product| %>
+  </div>        
+  <div class="col-sm-3 col-md-3">
+    <div class="thumbnail">
+          <h3><%= product.name %></h3>
+          <%= link_to product_path(product) do %>
+          <%= image_tag product.product_image.url(:thumb) %><br />
+          <% end %>
+        <div class="caption">
+        <hr />
+          <p>Price: $<%= product.price %></p>
+          <p>Quantity: <%= product.quantity %></p>
+          <%= link_to 'View', product_path(product), class: "btn btn-info btn-sm" %>
+          <% if current_owner != nil %>
+            <% if @current_biz_owner_ids.include?(current_owner.id) %>
+              <%= link_to 'Edit', edit_product_path(product, business_id: @business.id), class: "btn btn-warning btn-sm" %>
+            <% end %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+      <% end %>   
+
   <% else %>
     <h2>This store currently has no products</h2>
   <% end %>
-</div>
 </div>
