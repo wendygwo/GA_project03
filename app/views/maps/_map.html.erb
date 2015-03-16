@@ -220,34 +220,31 @@
   </div>
   <br /> -->
 
-  <div class="row">
-  <div id="productArea" class="col-md-12">
 
-      <% @businesses.each do |business| %>
+<div class="row">
+        <% @businesses.each do |business| %>
         <% prods = business.products %>
         <% prods.each do |p| %>
-            <div id="productCard" class="col-md-3">
-
-              <h4><%= p.name %></h4>
-
-              <%= link_to product_path(p) do %>
-                  <%= image_tag p.product_image.url(:thumb)%>
-              <% end%>
-
-              <%#= image_tag p.product_image.url(:thumb) %><br />
-              <hr />
-              <p>Price: $<%= p.price %></p>
-              <p>Quantity: <%= p.quantity %></p>
-              <%= link_to 'View', product_path(p), class: "btn btn-info btn" %>
-              <hr />
-              See more from: <%= link_to "#{business.name}", business_path(business) %>
-            </div>
-          <%# end %>
-        <% end %>
+  <div class="col-sm-3 col-md-3">
+    <div class="thumbnail">
+          <h4><%= p.name %></h4>
+            <%= link_to product_path(p) do %>
+            <%= image_tag p.product_image.url(:thumb)%>
+            <% end%>
+        <div class="caption">
+                <p>Price: $<%= p.price %></p>
+                <p>Quantity: <%= p.quantity %></p>
+                <%= link_to 'View', product_path(p), class: "btn btn-info btn" %>
+                <hr />
+                See more from: <%= link_to "#{business.name}", business_path(business) %>
+        </div>
+      </div>
+  </div>
       <% end %>
+      <% end %>    
+</div>
 
-  </div>
-  </div>
+
 
 
 
