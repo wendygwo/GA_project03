@@ -63,25 +63,25 @@
 <br />
 <br />
 <br />
-
-<div class='row'>
-  <div class="col-md-12">
-  <!-- 32 x 32 -->
-      <%= image_tag 'http://6znr8g7i2u1e6urycg61i18w.wpengine.netdna-cdn.com/wp-content/uploads/2013/12/flat-icon-facebook-150x150.png', class: "icon" %>
-  </div>
-</div>  
+<hr />
+<hr />
+<hr />
+<hr />
 
 
 
 
 <div class='row'>
-  <div class="col-md-12">
-  <hr />
+<hr />
   <% if @products.count != 0%>
+  <hr />
+  <hr />
   <h2>Products</h2>
-          <% @products.each do |product| %>
-  </div>        
-  <div class="col-sm-3 col-md-3">
+
+  <% @products.each do |product| %> 
+
+  <div class="col-md-3">
+
     <div class="thumbnail">
           <h3><%= product.name %></h3>
           <%= link_to product_path(product) do %>
@@ -101,8 +101,21 @@
     </div>
   </div>
       <% end %>   
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <% else %>
     <h2>This store currently has no products</h2>
   <% end %>
-</div>
