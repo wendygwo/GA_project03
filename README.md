@@ -16,5 +16,6 @@ This project is a location-based app that simplifies the lives of local retail s
 * Twitter Bootstrap
 
 ####Collaborators:
-[Kevin Curbelo](https://github.com/kcurbelo)
-[Johnny Whitfield](https://github.com/johnnywhitfield)
+* [Kevin Curbelo](https://github.com/kcurbelo)
+* [Wendy Gwo](https://github.com/wendygwo)
+* [Johnny Whitfield](https://github.com/johnnywhitfield)
